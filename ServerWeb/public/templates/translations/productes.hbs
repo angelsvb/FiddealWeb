@@ -1,0 +1,193 @@
+<div id="content_container">
+    <div id="content">
+        <table id="products_grid" class="grid">
+            <thead>
+            <tr class="grid_row grid_header">
+                <th id="name" class="column_20">{{column_product}}</th>
+                <th id="reference" class="column_15">{{column_reference}}</th>
+                <th id="subcategory" class="column_15">{{column_subcategory}}</th>
+                <th id="price" class="column_8 centered">{{column_price}}</th>
+                <th id="stock" class="column_10 centered">{{column_stock}}</th>
+                <th id="offer" class="column_10 centered">{{column_in_offer}}</th>
+                <th id="visible" class="column_10 centered">{{column_visible}}</th>
+                <th id="update" class="column_10 centered">{{column_update}}</th>
+            </tr>
+            <tr class="grid_row">
+                <th class="horizontal_rule column_97"></th>
+            </tr>
+            <tr class="spacer_10"></tr>
+            </thead>
+            <tbody id="table_body">
+            </tbody>
+        </table>
+    </div>
+    <div id="product_detail" class="column_40 hidden">
+        <div id="container_detail">
+            <div class="detail_header clearfix">
+                <div class="detail_buttons_container clearfix">
+                    <p class="detail_title light">{{title}}</p>
+                    <button class="button_detail last_action" onclick="hideProductDetail()">
+                        <div style="display:inline-flex">
+                            <p class="action_label">{{close}}</p>
+                            <img class="action_icon" src="../images/ic_close_dark.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button id="main_button"  class="button_detail" onClick="switchFloatingButtons()">
+                        <div>
+                            <p class="action_label">{{actions}}</p>
+                            <img class="action_icon" src="../images/ic_actions.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_first" onclick="startCreateProduct()">
+                        <div>
+                            <p class="action_label">{{add}}</p>
+                            <img class="action_icon" src="../images/ic_action_new.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_second edit" onclick="startEditingProduct()">
+                        <div>
+                            <p class="action_label">{{edit}}</p>
+                            <img class="action_icon" src="../images/ic_action_edit.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_second confirm_edit hidden" onclick="saveProduct()">
+                        <div>
+                            <p class="action_label">{{save}}</p>
+                            <img class="action_icon" src="../images/ic_action_save.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_third" onclick="deleteProduct()">
+                        <div>
+                            <p class="action_label">{{delete}}</p>
+                            <img class="action_icon" src="../images/ic_action_delete.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_third discard_edit hidden" onclick="discardProduct()">
+                        <div>
+                            <p class="action_label">{{discard}}</p>
+                            <img class="action_icon" src="../images/ic_action_reject_red.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <hr class="horizontal_rule horizontal_rule_detail">
+
+            <div class="grid_item_detail">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputName">{{field_name}}*</label>
+                        <input type="text" id="inputName" placeholder="Nombre" class="editable">
+                        <div id="inputName_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputReference">{{field_reference}}*</label>
+                        <input type="text" id="inputReference" placeholder="Referencia" class="editable">
+                        <div id="inputReference_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCategory">{{field_category}}*</label>
+                        <select id="inputCategory" class="form-control selector editable">
+                        </select>
+                        <div id="inputCategory_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputSubcategory">{{field_subcategory}}*</label>
+                        <select id="inputSubcategory" class="form-control selector" disabled>
+                        </select>
+                        <div id="inputSubcategory_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputStockState">{{field_stock_state}}*</label>
+                        <select id="inputStockState" class="form-control selector editable" onchange="onChangeStockState()">
+                            <option selected value="0">{{default_select_option}}</option>
+                            <option value="1">{{stock_available}}</option>
+                            <option value="2">{{stock_discountinued}}</option>
+                            <option value="3">{{stock_outlet}}</option>
+                            <option value="4">{{stock_arriving}}</option>
+                            <option value="5">{{stock_not_available}}</option>
+                        </select>
+                        <div id="inputStockState_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputStock">{{field_stock}}*</label>
+                        <input type="number" id="inputStock" placeholder="400" class="editable"/>
+                        <div id="inputStock_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="inputExpectedArrival">{{field_expected_arrival}}</label>
+                        <input type="date" id="inputExpectedArrival" disabled>
+                        <div id="inputExpectedArrival_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="inputPrice">{{field_price}}*</label>
+                        <input type="text" id="inputPrice" placeholder="49.95€" class="editable">
+                        <div id="inputPrice_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputOutletPrice">{{field_price_outlet}}*</label>
+                        <input type="text" id="inputOutletPrice" placeholder="29.95€" class="editable">
+                        <div id="inputOutletPrice_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputVisible">{{field_product_visible}}*</label>
+                        <select id="inputVisible" class="form-control selector editable">
+                            <option value="1" selected>{{product_visible}}</option>
+                            <option value="2">{{product_not_visible}}</option>
+                        </select>
+                        <div id="inputVisible_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputDescription">{{field_description}}*</label>
+                        <textarea id="inputDescription" placeholder="" class="editable"></textarea>
+                        <div id="inputDescription_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputProductID">{{field_product_id}}</label>
+                        <input type="text" id="inputProductID" placeholder="" disabled>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputOffer">{{field_offer_id}}</label>
+                        <input type="text" id="inputOffer" placeholder="" disabled>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCreationDate">{{field_creation_date}}</label>
+                        <input type="text" id="inputCreationDate" disabled>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputUpdateDate">{{field_update_date}}</label>
+                        <input type="text" id="inputUpdateDate" placeholder="" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="empty_grid" class="empty_grid_container hidden shadow">
+    <p class="info_title"> {{attention}} </p>
+    <p class="info"> {{empty_grid_1}}</p>
+    <p> {{empty_grid_2}}</p>
+    <img id="create_first" src="../images/ic_action_new_dark.svg" class="image_action" title="Nuevo producto" onclick="newProduct()" alt="Crear producto">
+</div>
+</div>

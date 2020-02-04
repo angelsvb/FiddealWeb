@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Fiddeal - Gestión compras manuales </title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <script type='text/javascript' src="../javascripts/utilities/jquery-functions.js"></script>
+    <script type='text/javascript' src="../bundled/compres_manuals.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
+    <link rel="stylesheet" href="../stylesheets/dialogs.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/compres_manuals.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/style.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/header_and_footer.css" type="text/css">
+
+    <!-- COOKIES -->
+    <script type='text/javascript' src="../bundled/legal.js"></script>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/cookies_custom.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- END COOKIES -->
+
+    <script> initializeBefore() </script>
+</head>
+<body onLoad="initializeAfter()">
+<header style="height:60px;background: url('../images/bg_login.png') bottom">
+    <img src="../images/favicon.ico">
+</header>
+
+<div id="content_container">
+    <div id="content">
+        <table id="manual_purchases_grid" class="grid">
+            <thead>
+            <tr class="grid_row grid_header">
+                <th id="purchase_id" class="column_25">Número de compra</th>
+                <th id="purchase_date" class="column_12 centered">Fecha de compra</th>
+                <th id="total" class="column_10 centered">Total</th>
+                <th id="id_customer" class="column_10 centered">Cliente</th>
+                <th id="manual_record_day" class="column_10 centered">Registro</th>
+                <th id="manual_revision" class="column_15 centered"> Comprovada
+                <th id="manual_accepted" class="column_15 centered"> Aceptada </th>
+            </tr>
+            <tr class="grid_row">
+                <th class="horizontal_rule column_97"></th>
+            </tr>
+            <tr class="spacer_10"></tr>
+            </thead>
+            <tbody id="table_body">
+        </table>
+    </div>
+    <div id="manual_purchase_detail" class="column_40 hidden">
+        <div id="actions">
+            <div class="right">
+                <img id="action_accept" src="../images/ic_action_accept.svg" class="image_action" title="Aceptar compra" style="margin-right: 5px" onclick="acceptManualPurchase()">
+            </div>
+            <div class="right">
+                <img id="action_reject" src="../images/ic_action_reject.svg" class="image_action" title="Denegar compra" onclick="rejectManualPurchase()">
+            </div>
+            <div class="right">
+                <img id="action_view" src="../images/ic_action_view.svg" class="image_action" title="Ver ticket" onclick="showTicket()">
+            </div>
+            <p id="actions_label" class="form_title"> Acciones </p>
+        </div>
+        <div id="container_detail">
+            <div class="detail_header">
+                <div>
+                    <p class="form_title light column_90"> DETALLE DE COMPRA </p>
+                    <div class="column_10">
+                        <img src="../images/ic_close_dark.svg" width="26px" height="26px" class="form_close_dark" style="margin-right: 15px" onclick="hidePurchaseDetail()"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid_item_detail">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputPurchaseID">Número de compra</label>
+                        <input type="text" id="inputPurchaseID">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPurchaseDate">Fecha</label>
+                        <input type="text" id="inputPurchaseDate">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputUser">Cliente</label>
+                        <input type="text" id="inputUser">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="inputSubtotal">Subtotal</label>
+                        <input type="text" id="inputSubtotal">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputDiscount">Descuento</label>
+                        <input type="text" id="inputDiscount">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputTotal">Total</label>
+                        <input type="text" id="inputTotal">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPaymentMethod">Pago</label>
+                        <input type="text" id="inputPaymentMethod">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputManual">Compra manual</label>
+                        <input type="text" id="inputManual">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputAccepted">Registro aceptado</label>
+                        <input type="text" id="inputAccepted">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputRegistrationDate">Fecha de registro</label>
+                        <input type="text" id="inputRegistrationDate">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputRevisionDate">Fecha de revision</label>
+                        <input type="text" id="inputRevisionDate">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputDescription">Comentario revisión</label>
+                        <textarea id="inputDescription">
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <table id="products_grid" class="grid">
+                            <thead>
+                            <tr class="grid_row grid_header">
+                                <th class="column_40">Producto</th>
+                                <th class="column_20 centered">Precio</th>
+                                <th class="column_20 centered">Descuento</th>
+                                <th class="column_20 centered">Cantidad</th>
+                            </tr>
+                            <tr class="grid_row">
+                                <th class="horizontal_rule column_97"></th>
+                            </tr>
+                            <tr class="spacer_5"></tr>
+                            </thead>
+                            <tbody id="products_body">
+                            <tr class="grid_row">
+                                <td class="column_40">Camiseta blanca XL</td>
+                                <td class="column_20 centered">19.95</td>
+                                <td class="column_20 centered">0%</td>
+                                <td class="column_20 centered">1</td>
+                            </tr>
+                            <tr class="spacer_5"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer style="height: 150px; background: url('../images/bg_login.png') bottom"> </footer>
+</body>
+</html>

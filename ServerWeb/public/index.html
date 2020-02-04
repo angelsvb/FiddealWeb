@@ -1,0 +1,186 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Fiddeal - Inicio </title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <script type='text/javascript' src="bundled/index.js"></script>
+    <script type='text/javascript' src="javascripts/utilities/jquery-functions.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/dialogs.css" type="text/css">
+    <link rel="stylesheet" href="stylesheets/index.css" type="text/css">
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+    <link rel="stylesheet" href="stylesheets/fiddeal.css" type="text/css">
+    <link rel="stylesheet" href="stylesheets/header_and_footer.css" type="text/css">
+
+    <!-- COOKIES -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/cookies_custom.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- END COOKIES -->
+
+    <script> initializeBefore() </script>
+</head>
+<body onLoad="initializeAfter()" >
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<div class="bg"></div>
+<div id="content" class="shadow center_full rounded_border">
+    <div id="contentSignin">
+        <div class="form_title"> INICIAR SESIÓN </div>
+        <form onsubmit="return executeLogin()">
+            <div id="signin_inputs">
+                <div class="input col-md-12">
+                  <label for="login_email" class="labelForm"> Correo electrònico </label>
+                  <input id="login_email" placeholder="Email" type="text">
+                  <div id="login_email_error" class="invalid-tooltip"> Campo obligatório</div>
+                </div>
+                <div class="input col-md-12">
+                  <label for="login_password" class ="labelForm"> Contraseña </label>
+                  <input id="login_password" placeholder="Contraseña" type="password">
+                  <div id="login_password_error" class="invalid-tooltip"> Campo obligatório </div>
+                </div>
+                <input type="submit" style="display: none" />
+            </div>
+        </form>
+        <button  id="button_login" class="button_green" onclick="executeLogin()"> CONTINUAR </button>
+        <p class="text fiddeal-clickable" onclick="showRecoveryDialog()"> ¿Ha olvidado su contraseña? </p>
+    </div>
+    <div id="contentSignup">
+        <p class="form_title" id="signupTitle"> NO ESTOY REGISTRADO </p>
+        <div id="signup_message">
+          <p class="white_label justified"> Para entrar en el mundo de la fidelización digital de clientes complete el proceso de registro de su negocio. </p>
+          <p class="white_label justified"> Aproveche ahora esta nueva oportunidad de negocio y pruebe Fiddeal.</p>
+        </div>
+        <button id="button_signup" class="button_dark" onclick="showSignupDialog()"> REGISTRAR </button>
+    </div>
+</div>
+
+<div id="modal_registrar" class="modal">
+  <!-- Modal Content -->
+  <form id="signup_content" class="modal-content">
+    <div class="modal-header">
+        <p class="form_title_white column_80"> FORMULARIO DE REGISTRO </p>
+        <div class="column_20 justify-content-center align-self-center">
+          <img src="images/ic_close.svg" onclick="hideSignupDialog()" width="32px" height="32px" class="form_close" style="float:right"/>
+        </div>
+    </div>
+    <div class="modal-body">
+      <!--mail, nom empresa, cif empresa-->
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputEmail">Correo electrónico*</label>
+          <input type="email" id="inputEmail" placeholder="Email">
+          <div id="inputEmail_error" class="invalid-tooltip"> Campo obligatório </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="businessName">Nombre de la empresa*</label>
+          <input type="text" id="businessName" placeholder="Nombre">
+          <div id="businessName_error" class="invalid-tooltip"> Campo obligatório </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputCIF">CIF*</label>
+          <input type="text" id="inputCIF" placeholder="J7727998B">
+          <div id="inputCIF_error" class="invalid-tooltip"> Campo obligatório </div>
+        </div>
+      </div>
+
+      <!--contrasenya, repetir contrasenya-->
+      <div class="form-row">
+        <div class="col-md-5 form-row">
+          <div class="form-group col-md-6">
+            <label for="inputPassword">Contraseña*</label>
+            <input type="password" id="inputPassword" placeholder="Contraseña">
+            <div id="inputPassword_error" class="invalid-tooltip"> Campo obligatório </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputConfirmation">Confirmar contraseña*</label>
+            <input type="password" id="inputConfirmation" placeholder="Confirmar contraseña">
+            <div id="inputConfirmation_error" class="invalid-tooltip"> Campo obligatório </div>
+          </div>
+        </div>
+        <div class="form-group col-md-1">
+          <label for="prefix">Prefijo</label>
+          <input type="text" id="prefix" placeholder="+034" disabled>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputPhone">Teléfono*</label>
+          <input type="tel" id="inputPhone" placeholder="972 72 72 72">
+          <div id="inputPhone_error" class="invalid-tooltip"> Campo obligatório </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputWebPage">Página web</label>
+          <input type="text" id="inputWebPage" placeholder="www.google.com">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputBusinessType">Tipo de empresa*</label>
+          <select id="inputBusinessType" class="form-control selector"> </select>
+          <div id="inputBusinessType_error" class="invalid-tooltip"> Campo obligatório </div>
+        </div>
+      </div>
+
+      <!--Pais, Provincia, Municipi, CP, Adreça-->
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="inputState">País*</label>
+          <select data-toggle="tooltip" data-placement="top" title="Recarge la pàgina si no dispone de opciones." id="inputState" class="form-control selector">
+            <option selected value="0">Seleccione una opción...</option>
+          </select>
+          <div id="inputState_error" class="invalid-tooltip"> Campo obligatório </div>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputProvincia">Província*</label>
+          <select id="inputProvincia" class="form-control selector" disabled>
+            <option selected value="0">Seleccione una opción...</option>
+          </select>
+          <div id="inputProvincia_error" class="invalid-tooltip"> Campo obligatório </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputMunicipi">Municipio*</label>
+          <input type="text"id="inputMunicipi" placeholder="Badalona">
+          <div id="inputMunicipi_error" class="invalid-tooltip"> Campo obligatório </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputCP">Código postal*</label>
+          <input type="number" id="inputCP" placeholder="08100" min="0" max="100000" class="form-control selector">
+          <div id="inputCP_errpr" class="invalid-tooltip"> Campo obligatório </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputAddress">Dirección*</label>
+          <input type="text" id="inputAddress" placeholder="C/Aragó 5">
+          <div id="inputAddress_error" class="invalid-tooltip"> Campo obligatório </div>
+        </div>
+      </div>
+
+      <!--Descripcio -->
+        <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="inputDescripton">Descripción de la empresa*</label>
+          <textarea style="resize:none" maxlength="250" id="inputDescripton" rows="3"></textarea>
+          <div id="inputDescripton_error" class="invalid-tooltip"> Campo obligatório </div>
+          <small id="textAreaHelp" class="form-text text-muted">Máximo 250 carácteres. Mínimo 30 carácteres.</small>
+        </div>
+        </div>
+
+        <div class="footer">
+            <div class="signup_button" style="margin-left:10px"> <button type="button" class="button_green" style="width:100%" onclick="executeSignup()"> REGISTRAR </button> </div>
+            <div class="signup_button"> <button class="button_red" type="button" style="width: 100%" onclick="hideSignupDialog()"> CANCELAR </button> </div>
+            <div class="column_40 custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="termsAndConditions" autocomplete="off">
+              <label class="custom-control-label" for="termsAndConditions">He leído y acepto los <a href="/html/terminos_condiciones.html">términos y condiciones de uso</a> de la aplicación y su <a href="/html/politica_privacidad.html">política de privacidad.</a></label>
+              <div id="termsAndConditions_error" class="invalid-tooltip"> Campo obligatório </div>
+            </div>
+        </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>

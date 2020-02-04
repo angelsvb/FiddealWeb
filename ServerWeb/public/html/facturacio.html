@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Fiddeal - Facturación </title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <script type='text/javascript' src="../javascripts/utilities/jquery-functions.js"></script>
+    <script type='text/javascript' src="../bundled/facturacio.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
+    <link rel="stylesheet" href="../stylesheets/dialogs.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/facturacio.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/style.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/header_and_footer.css" type="text/css">
+
+    <!-- COOKIES -->
+    <link rel="stylesheet" type="text/css" href="../stylesheets/cookies_custom.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- END COOKIES -->
+
+    <script> initializeBefore() </script>
+</head>
+<body onLoad="initializeAfter()">
+    <div id="content_container">
+        <div id="content">
+            <div id="column_buttons" class="shadow column_48">
+                <div>
+                    <div>
+                        <p class="form_title light"> INFORMACIÓN </p>
+                        <div class="horizontal_rule"></div>
+                    </div>
+                </div>
+                <form id="day_information" class="form-horizontal">
+                    <div class="form-group row">
+                        <label for="salesNumber" class="col-sm-4 col-form-label align-self-center">Nº Compras: </label>
+                        <div class="col-sm-2">
+                            <input type="text" readonly class="form-control-plaintext" id="salesNumber" value="0" disabled>
+                        </div>
+                        <label for="fidelizationPercentage" class="col-sm-4 col-form-label align-self-center">Fidelización: </label>
+                        <div class="col-sm-2">
+                            <input type="text" readonly class="form-control-plaintext" id="fidelizationPercentage" value="00.00 %" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row" style="margin-bottom: 5%">
+                        <label for="averageTicket" class="col-sm-4 col-form-label align-self-center">Ticket medio: </label>
+                        <div class="col-sm-2">
+                            <input type="text" readonly class="form-control-plaintext" id="averageTicket" value="0.00 €"disabled>
+                        </div>
+                        <label for="totalValue" class="col-sm-4 col-form-label align-self-center">Importe facturado: </label>
+                        <div class="col-sm-2">
+                            <input type="text" readonly class="form-control-plaintext" id="totalValue" value="0.00 €" disabled>
+                        </div>
+                    </div>
+                    <input type="text" id="codebar" hidden>
+                </form>
+                <div>
+                    <div>
+                        <p class="form_title light"> ACCIONES </p>
+                        <div class="horizontal_rule"></div>
+                    </div>
+                </div>
+                <div id="action_buttons">
+                    <div class="column_48" style="margin-left: 2%; margin-right: 0%">
+                        <div class="button_container"><button id="buttonInvoice" class="action_button button_green" onclick="getInvoice()" disabled> Cobrar ticket </button> </div>
+                        <div class="button_container"><button class="action_button button_blue" onclick="checkPrice()"> Consultar precio </button></div>
+                        <div class="button_container"><button class="action_button button_blue_dark" onclick="checkStock()"> Consultar disponibilidad </button></div>
+                        <div class="button_container"><button class="action_button button_blue_dark" disabled> Cambio de productos</button></div>
+                    </div>
+                    <div class="column_48" style="margin-left: 0%; margin-right: 2%">
+                        <div class="button_container"><button id="buttonCancel" class="action_button button_red" onclick="cancelTicket()" disabled> Cancelar ticket</button> </div>
+                        <div class="button_container"><button class="action_button button_yellow" onclick="manualProductEntry()"> Código manual</button></div>
+                        <div class="button_container"><button class="action_button button_yellow" disabled> Devolución de productos</button></div>
+                        <div class="button_container"><button class="action_button button_dark" disabled> Cierre de caja </button></div>
+                    </div>
+                </div>
+            </div>
+            <div id="column_purchase" class="column_49 shadow">
+                <div>
+                    <p class="form_title light"> TICKET ACTUAL </p>
+                    <div class="horizontal_rule"></div>
+                </div>
+                <div id="grid_header">
+                    <table class="grid">
+                        <tr class="grid_row grid_header">
+                            <th id="product_name" class="column_45">Producto</th>
+                            <th id="product_value" class="column_25 centered">Precio original</th>
+                            <th id="product_realvalue" class="column_25 centered">Precio aplicado</th>
+                            <th id="gap" class="column_5 centered"></th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="horizontal_rule"></div>
+                <div class="spacer_10"></div>
+                <div id="grid_container">
+                    <table id="purchases_grid" class="grid">
+                    </table>
+                </div>
+                <div>
+                    <form id="purchase_information" class="form-horizontal">
+                        <div class="form-group row">
+                            <div class="horizontal_rule"></div>
+                            <label for="info_number" class="col-sm-4 col-form-label align-self-center">Nº Productos: </label>
+                            <div class="col-sm-2">
+                                <input type="text" readonly class="form-control-plaintext" id="info_number" value="0" disabled>
+                            </div>
+                            <label for="info_subtotal" class="col-sm-4 col-form-label align-self-center">Subtotal: </label>
+                            <div class="col-sm-2">
+                                <input type="text" readonly class="form-control-plaintext" id="info_subtotal" value="0.00 €" disabled>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    (function($) {
+        var _timeoutHandler = 0,
+            _inputString = '',
+            _onKeypress = function(e) {
+                if (_timeoutHandler) {
+                    clearTimeout(_timeoutHandler);
+                }
+                _inputString += e.key;
+
+                _timeoutHandler = setTimeout(function () {
+                    if (_inputString.length <= 3) {
+                        _inputString = '';
+                        return;
+                    }
+                    $(e.target).trigger('altdeviceinput', _inputString);
+                    _inputString = '';
+
+                }, 20);
+            };
+        $(document).on({
+            keypress: _onKeypress
+        });
+    })($);
+</script>
+</html>

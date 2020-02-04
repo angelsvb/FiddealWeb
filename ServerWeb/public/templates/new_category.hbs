@@ -1,0 +1,21 @@
+<div id="new_category" class="modal">
+    <div id="sendMailRecoverPassword_container" class="shadow dialog_container">
+        <div id="sendMailRecoverPassword_header" class ="dialog_header">
+            <img width="72px" height="72px" src="../images/ic_action_new_white.svg"/>
+            <h3>{{dialog_title}}</h3>
+        </div>
+        <div id="sendMailRecoverPassword_content" class ="dialog_content">
+            <form>
+                <div class="form-group col-md-12">
+                    <label for="category_name" class="labelForm">{{category_name}}</label>
+                    <input type="text" class="form-control" id="category_name" aria-describedby="emailHelp" placeholder="{{category_placeholder}}" required>
+                    <div id="category_name_error" class="invalid-tooltip">{{compulsory_field}}</div>
+                </div>
+            </form>
+            <div id="buttons">
+                <button class ="button_green dialog_button full_width" {{{createCategory}}}>{{save_category}}</button>
+                <button id="button_cancel" class="button_grey dialog_button full_width" onClick="$('#new_category').addClass('hidden').removeClass('visible')">{{cancel}}</button>
+            </div>
+        </div>
+    </div>
+</div>

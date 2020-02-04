@@ -1,0 +1,401 @@
+<link rel="stylesheet" href="../stylesheets/initialize_horari.css" type="text/css">
+<div id="initialize_horari" class="modal">
+    <script type="text/javascript">
+
+    </script>
+    <div id="initialize_horari_content" class="shadow dialog_container">
+        <div class="dialog_content">
+            <div class="form-row">
+                <div id="header_profile">
+                    <p class="form_title light column_80"> {{dialog_title}} </p>
+                </div>
+                <div class="horizontal_rule column_97"></div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-3 form-group row" style="margin-top: 8px">
+                    <div class="col-md-12">
+                        <label class="col-form-label">· {{monday_uppercase}}: </label>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label right"> {{from_to_1}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="monday_1">
+                        <div id="monday_1_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4 row">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="monday_2">
+                        <div id="monday_2_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{and_from}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="monday_3">
+                        <div id="monday_3_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="monday_4">
+                        <div id="monday_4_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="monday_closed" onclick="disableScheduleInputs_closed('monday')">
+                        <label class="custom-control-label" for="monday_closed">{{closed}}</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="monday_24h" onclick="disableScheduleInputs_24h('monday')">
+                        <label class="custom-control-label" for="monday_24h">{{opened_24h}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-3 form-group row" style="margin-top: 8px">
+                    <div class="col-md-12">
+                        <label class="col-form-label">· {{tuesday_uppercase}}: </label>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label right"> {{from_to_1}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="tuesday_1">
+                        <div id="tuesday_1_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4 row">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="tuesday_2">
+                        <div id="tuesday_2_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{and_from}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="tuesday_3">
+                        <div id="tuesday_3_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="tuesday_4">
+                        <div id="tuesday_4_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="tuesday_closed" onclick="disableScheduleInputs_closed('tuesday')">
+                        <label class="custom-control-label" for="tuesday_closed">{{closed}}</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="tuesday_24h" onclick="disableScheduleInputs_24h('tuesday')">
+                        <label class="custom-control-label" for="tuesday_24h">{{opened_24h}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-3 form-group row" style="margin-top: 8px">
+                    <div class="col-md-12">
+                        <label class="col-form-label">· {{wednesday_uppercase}}: </label>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label right"> {{from_to_1}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="wednesday_1">
+                        <div id="wednesday_1_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4 row">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="wednesday_2">
+                        <div id="wednesday_2_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{and_from}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="wednesday_3">
+                        <div id="wednesday_3_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="wednesday_4">
+                        <div id="wednesday_4_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="wednesday_closed" onclick="disableScheduleInputs_closed('wednesday')">
+                        <label class="custom-control-label" for="wednesday_closed">{{closed}}</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="wednesday_24h" onclick="disableScheduleInputs_24h('wednesday')">
+                        <label class="custom-control-label" for="wednesday_24h">{{opened_24h}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-3 form-group row" style="margin-top: 8px">
+                    <div class="col-md-12">
+                        <label class="col-form-label">· {{thursday_uppercase}}: </label>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label right"> {{from_to_1}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="thursday_1">
+                        <div id="thursday_1_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4 row">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="thursday_2">
+                        <div id="thursday_2_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{and_from}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="thursday_3">
+                        <div id="thursday_3_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="thursday_4">
+                        <div id="thursday_4_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="thursday_closed" onclick="disableScheduleInputs_closed('thursday')">
+                        <label class="custom-control-label" for="thursday_closed">{{closed}}</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="thursday_24h" onclick="disableScheduleInputs_24h('thursday')">
+                        <label class="custom-control-label" for="thursday_24h">{{opened_24h}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-3 form-group row" style="margin-top: 8px">
+                    <div class="col-md-12">
+                        <label class="col-form-label">· {{friday_uppercase}}: </label>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label right"> {{from_to_1}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="friday_1">
+                        <div id="friday_1_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4 row">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="friday_2">
+                        <div id="friday_2_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{and_from}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="friday_3">
+                        <div id="friday_3_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="friday_4">
+                        <div id="friday_4_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="friday_closed" onclick="disableScheduleInputs_closed('friday')">
+                        <label class="custom-control-label" for="friday_closed">{{closed}}</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="friday_24h" onclick="disableScheduleInputs_24h('friday')">
+                        <label class="custom-control-label" for="friday_24h">{{opened_24h}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-3 form-group row" style="margin-top: 8px">
+                    <div class="col-md-12">
+                        <label class="col-form-label">· {{saturday_uppercase}}: </label>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label right"> {{from_to_1}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="saturday_1">
+                        <div id="saturday_1_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4 row">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="saturday_2">
+                        <div id="saturday_2_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{and_from}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="saturday_3">
+                        <div id="saturday_3_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center" for="saturday_4"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="saturday_4">
+                        <div id="saturday_4_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="saturday_closed" onclick="disableScheduleInputs_closed('saturday')">
+                        <label class="custom-control-label" for="saturday_closed">{{closed}}</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="saturday_24h" onclick="disableScheduleInputs_24h('saturday')">
+                        <label class="custom-control-label" for="saturday_24h">{{opened_24h}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-3 form-group row align-self-center" style="margin-top: 8px">
+                    <div class="col-md-8">
+                        <label class="col-form-label">· {{sunday_uppercase}}: </label>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row align-self-center" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label right"> {{from_to_1}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="sunday_1">
+                        <div id="sunday_1_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row align-self-center" style="margin-top: 8px">
+                    <div class="col-md-4 row">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="sunday_2">
+                        <div id="sunday_2_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row align-self-center" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{and_from}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="sunday_3">
+                        <div id="sunday_3_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row align-self-center" style="margin-top: 8px">
+                    <div class="col-md-4">
+                        <label class="col-form-label center"> {{from_to_2}} </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="time" class="form-control" id="sunday_4">
+                        <div id="sunday_4_error" class="invalid-tooltip" style="display:none"> {{compulsory_field}} </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 form-group row">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="sunday_closed" onclick="disableScheduleInputs_closed('sunday')">
+                        <label class="custom-control-label" for="sunday_closed">{{closed}}</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="sunday_24h" onclick="disableScheduleInputs_24h('sunday')">
+                        <label class="custom-control-label" for="sunday_24h">{{opened_24h}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-9 form-group"></div>
+                <div class="col-sm-3 form-group">
+                    <button class="button_green" onclick="initializeHorari()"> {{save}} </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

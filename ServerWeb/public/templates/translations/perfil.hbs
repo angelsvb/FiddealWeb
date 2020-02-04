@@ -1,0 +1,140 @@
+<div id="content_container">
+    <div id="content">
+        <div class="form-row">
+            <div id="header_profile">
+                <p class="form_title light column_80"> {{section_profile}} </p>
+                <div class="column_20" onclick="changeProfileInputStatus()">
+                    <img id="image_profile" src="../images/ic_action_edit.svg" width="36px" height="36px" class="form_action" style="margin-right: 0px"/>
+                </div>
+            </div>
+            <div class="horizontal_rule column_97"></div>
+        </div>
+
+        <div id="form_profile">
+            <div class="form-row" >
+                <div class="form-group col-md-4 align-self-center" style="padding-left:15px;padding-right:15px">
+                    <img src="../images/appicon_hd.png" width="100%" height="auto">
+                </div>
+                <div class="form-group col-md-8">
+                    <!--mail, nom empresa, cif empresa-->
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail">{{field_email}}*</label>
+                            <input type="email" id="inputEmail" placeholder="info@example.com">
+                            <div id="inputEmail_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputName">{{field_name}}*</label>
+                            <input type="text" class="editable" id="inputName" placeholder="Empresa S.A.">
+                            <div id="inputName_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputCIF">{{field_cif}}*</label>
+                            <input type="text" id="inputCIF" placeholder="A12345678">
+                            <div id="inputCIF_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                        </div>
+                    </div>
+
+                    <!--Pais, Provincia, Municipi, CP, Adreça-->
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inputState">{{field_country}}*</label>
+                            <select id="inputState" class="form-control selector editable">
+                                <option selected value="0">{{default_select_option}}</option>
+                            </select>
+                            <div id="inputState_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputProvincia">{{field_region}}*</label>
+                            <select id="inputProvincia" class="form-control selector editable">
+                                <option selected value="0">{{default_select_option}}</option>
+                            </select>
+                            <div id="inputProvincia_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputMunicipi">{{field_city}}*</label>
+                            <input type="text" id="inputMunicipi" placeholder="Salt" class="editable">
+                            <div id="inputMunicipi_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputAddress">{{field_address}}*</label>
+                            <input type="text" id="inputAddress" placeholder="Ctra Barcelona S/N" class="editable">
+                            <div id="inputAddress_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                        </div>
+                    </div>
+
+                    <!--contrasenya, repetir contrasenya-->
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inputCP">{{field_postal_code}}*</label>
+                            <input type="number" id="inputCP" placeholder="17002" class="form-control selector editable">
+                            <div id="inputCP_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputPhone">{{field_phone}}</label>
+                            <input type="tel" id="inputPhone" placeholder="972001122" class="editable">
+                            <div id="inputPhone_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputWebPage">{{field_website}}</label>
+                            <input type="text" id="inputWebPage" placeholder="www.example.es" class="editable">
+                            <div id="inputWebPage_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputBusinessType">{{field_business_type}}*</label>
+                            <select id="inputBusinessType" class="form-control selector editable">
+                            </select>
+                            <div id="inputBusinessType_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Descripcio -->
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputDescription">{{field_description}}*</label>
+                    <textarea class="editable" style="resize:none" maxlength="250" id="inputDescription" rows="3"> </textarea>
+                    <small id="textAreaHelp" class="form-text text-muted editable">Máximo 250 carácteres. Mínimo 30 carácteres.</small>
+                    <div id="inputDescription_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row" style="margin-top:55px;">
+            <div id="header_fidelization_params">
+                <p class="form_title light column_90"> {{section_fidelization_params}} </p>
+                <div class="column_10" onclick="changeParamsInputStatus()">
+                    <img id="image_params" src="../images/ic_action_edit.svg" width="36px" height="36px" class="form_action" style="margin-right: 0px"/>
+                </div>
+            </div>
+            <div class="horizontal_rule column_97"></div>
+        </div>
+
+
+        <div class="form-row" id="form_params" style="margin-bottom: 35px">
+            <div class="form-group col-md-4">
+                <label for="inputEquivalence">{{field_discount_ratio}}</label>
+                <input type="text" id="inputEquivalence" placeholder="0.05 €">
+                <div id="inputEquivalence_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputLifeTime">{{field_discount_months}}</label>
+                <input type="number" id="inputLifeTime" placeholder="1 mes">
+                <div id="inputLifeTime_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+            </div>
+            <div class="form-group col-md-4" style="padding-left:40px">
+                <div class="custom-control form-control-lg custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="inputCaducidad" checked>
+                    <label class="custom-control-label" for="inputCaducidad">{{field_discount_expiring}}</label>
+                    <div id="inputCaducidad_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                </div>
+                <div class="custom-control form-control-lg custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="inputAmpliar" checked>
+                    <label class="custom-control-label" for="inputAmpliar">{{field_discount_extend_expiration}}</label>
+                    <div id="inputAmpliar_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

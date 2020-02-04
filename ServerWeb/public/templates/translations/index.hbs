@@ -1,0 +1,154 @@
+<div class="bg"></div>
+<div id="content" class="shadow center_full rounded_border">
+    <div id="contentSignin">
+        <div class="form_title"> {{login}} </div>
+        <form onsubmit="return executeLogin()">
+            <div id="signin_inputs">
+                <div class="input col-md-12">
+                  <label for="login_email" class="labelForm"> {{email}} </label>
+                  <input id="login_email" placeholder="{{email}}" type="text">
+                  <div id="login_email_error" class="invalid-tooltip"> {{compulsory_field}}</div>
+                </div>
+                <div class="input col-md-12">
+                  <label for="login_password" class ="labelForm"> {{password}} </label>
+                  <input id="login_password" placeholder="{{password}}" type="password">
+                  <div id="login_password_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+                </div>
+                <input type="submit" style="display: none" />
+            </div>
+        </form>
+        <button  id="button_login" class="button_green" onclick="executeLogin()"> {{continue}} </button>
+        <p class="text fiddeal-clickable" onclick="showRecoveryDialog()"> {{password_forgotten}} </p>
+    </div>
+    <div id="contentSignup">
+        <p class="form_title" id="signupTitle"> {{no_estoy_registrado}} </p>
+        <div id="signup_message">
+          <p class="white_label justified"> {{signup_text_1}} </p>
+          <p class="white_label justified"> {{signup_text_2}} </p>
+        </div>
+        <button id="button_signup" class="button_dark" onclick="showSignupDialog()"> {{registrar}} </button>
+    </div>
+</div>
+
+<div id="modal_registrar" class="modal">
+  <!-- Modal Content -->
+  <form id="signup_content" class="modal-content">
+    <div class="modal-header">
+        <p class="form_title_white column_80"> {{formulario_registro}} </p>
+        <div class="column_20 justify-content-center align-self-center">
+          <img src="images/ic_close.svg" onclick="hideSignupDialog()" width="32px" height="32px" class="form_close" style="float:right"/>
+        </div>
+    </div>
+    <div class="modal-body">
+      <!--mail, nom empresa, cif empresa-->
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputEmail">{{email}}*</label>
+          <input type="email" id="inputEmail" placeholder="{{email}}">
+          <div id="inputEmail_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="businessName">{{nombre_de_empresa}}*</label>
+          <input type="text" id="businessName" placeholder="{{nombre}}">
+          <div id="businessName_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputCIF">{{cif}}*</label>
+          <input type="text" id="inputCIF" placeholder="J7727998B">
+          <div id="inputCIF_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+        </div>
+      </div>
+
+      <!--contrasenya, repetir contrasenya-->
+      <div class="form-row">
+        <div class="col-md-5 form-row">
+          <div class="form-group col-md-6">
+            <label for="inputPassword">{{password}}*</label>
+            <input type="password" id="inputPassword" placeholder="{{password}}">
+            <div id="inputPassword_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputConfirmation">{{confirmar_contrasenya}}*</label>
+            <input type="password" id="inputConfirmation" placeholder="{{confirmar_contrasenya}}">
+            <div id="inputConfirmation_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+          </div>
+        </div>
+        <div class="form-group col-md-1">
+          <label for="prefix">{{prefijo}}</label>
+          <input type="text" id="prefix" placeholder="+034" disabled>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputPhone">{{telefono}}*</label>
+          <input type="tel" id="inputPhone" placeholder="972 72 72 72">
+          <div id="inputPhone_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputWebPage">{{pagina_web}}</label>
+          <input type="text" id="inputWebPage" placeholder="www.google.com">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputBusinessType">{{tipo_empresa}}*</label>
+          <select id="inputBusinessType" class="form-control selector"> </select>
+          <div id="inputBusinessType_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+        </div>
+      </div>
+
+      <!--Pais, Provincia, Municipi, CP, Adreça-->
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="inputState">{{pais}}*</label>
+          <select data-toggle="tooltip" data-placement="top" title="{{recargue_la_pagina}}" id="inputState" class="form-control selector">
+            <option selected value="0">{{seleccione_una_opcion}}</option>
+          </select>
+          <div id="inputState_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputProvincia">{{provincia}}*</label>
+          <select id="inputProvincia" class="form-control selector" disabled>
+            <option selected value="0">{{seleccione_una_opcion}}</option>
+          </select>
+          <div id="inputProvincia_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputMunicipi">{{municipio}}*</label>
+          <input type="text" id="inputMunicipi" placeholder="{{ciudad_placeholder}}">
+          <div id="inputMunicipi_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputCP">{{codigo_postal}}*</label>
+          <input type="number" id="inputCP" placeholder="08100" min="0" max="100000" class="form-control selector">
+          <div id="inputCP_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputAddress">{{direccion}}*</label>
+          <input type="text" id="inputAddress" placeholder="{{direccion_placeholder}}">
+          <div id="inputAddress_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+        </div>
+      </div>
+
+      <!--Descripcio -->
+        <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="inputDescripton">{{descripcion_empresa}}*</label>
+              <textarea style="resize:none" maxlength="250" id="inputDescripton" rows="3"></textarea>
+              <div id="inputDescripton_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+              <small id="textAreaHelp" class="form-text text-muted">{{descripcion_empresa_hint}}</small>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="signup_button" style="margin-left:10px">
+                <button type="button" class="button_green" style="width:100%" onclick="executeSignup()"> {{registrar}} </button>
+            </div>
+            <div class="signup_button">
+                <button class="button_red" type="button" style="width: 100%" onclick="hideSignupDialog()"> {{cancelar}} </button>
+            </div>
+            <div class="column_40 custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="termsAndConditions" autocomplete="off">
+              <label class="custom-control-label" for="termsAndConditions">{{terminos_1}}<a href="/html/terminos_condiciones.html">{{terminos_2}}</a> {{terminos_3}} <a href="/html/politica_privacidad.html">{{terminos_4}}</a></label>
+              <div id="termsAndConditions_error" class="invalid-tooltip"> {{compulsory_field}} </div>
+            </div>
+        </div>
+    </div>
+  </form>
+</div>

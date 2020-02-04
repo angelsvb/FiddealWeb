@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Fiddeal - Gestión de productos </title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <script type='text/javascript' src="../javascripts/utilities/jquery-functions.js"></script>
+    <script type='text/javascript' src="../bundled/productes.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
+    <link rel="stylesheet" href="../stylesheets/dialogs.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/productes.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/style.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/header_and_footer.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/fiddeal.css" type="text/css">
+
+    <!-- COOKIES -->
+    <link rel="stylesheet" type="text/css" href="../stylesheets/cookies_custom.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- END COOKIES -->
+
+    <script> initializeBefore() </script>
+</head>
+<body onLoad="initializeAfter()">
+    <div id="content_container">
+        <div id="content">
+            <table id="products_grid" class="grid">
+                <thead>
+                    <tr class="grid_row grid_header">
+                        <th id="name" class="column_20">Producto</th>
+                        <th id="reference" class="column_15">Referencia</th>
+                        <th id="subcategory" class="column_15">Subcategoria</th>
+                        <th id="price" class="column_8 centered">Precio</th>
+                        <th id="stock" class="column_10 centered">Estoc</th>
+                        <th id="offer" class="column_10 centered">En oferta</th>
+                        <th id="visible" class="column_10 centered">Visible</th>
+                        <th id="update" class="column_10 centered">Actualización</th>
+                    </tr>
+                    <tr class="grid_row">
+                        <th class="horizontal_rule column_97"></th>
+                    </tr>
+                    <tr class="spacer_10"></tr>
+                </thead>
+                <tbody id="table_body">
+                </tbody>
+            </table>
+        </div>
+        <div id="product_detail" class="column_40 hidden">
+                <div id="container_detail">
+                    <div class="detail_header clearfix">
+                        <div class="detail_buttons_container clearfix">
+                            <p class="detail_title light">DATOS DEL PRODUCTO </p>
+                            <button class="button_detail last_action" onclick="hideProductDetail()">
+                                <div style="display:inline-flex">
+                                    <p class="action_label">Cerrar</p>
+                                    <img class="action_icon" src="../images/ic_close_dark.svg" width="28px" height="28px"/>
+                                </div>
+                            </button>
+                            <button id="main_button"  class="button_detail" onClick="switchFloatingButtons()">
+                                <div>
+                                    <p class="action_label">Acciones</p>
+                                    <img class="action_icon" src="../images/ic_actions.svg" width="28px" height="28px"/>
+                                </div>
+                            </button>
+                            <button class="button_detail button_secondary button_secondary_first" onclick="startCreateProduct()">
+                                <div>
+                                    <p class="action_label">Añadir</p>
+                                    <img class="action_icon" src="../images/ic_action_new.svg" width="28px" height="28px"/>
+                                </div>
+                            </button>
+                            <button class="button_detail button_secondary button_secondary_second edit" onclick="startEditingProduct()">
+                                <div>
+                                    <p class="action_label">Editar</p>
+                                    <img class="action_icon" src="../images/ic_action_edit.svg" width="28px" height="28px"/>
+                                </div>
+                            </button>
+                            <button class="button_detail button_secondary button_secondary_second confirm_edit hidden" onclick="saveProduct()">
+                                <div>
+                                    <p class="action_label">Guardar</p>
+                                    <img class="action_icon" src="../images/ic_action_save.svg" width="28px" height="28px"/>
+                                </div>
+                            </button>
+                            <button class="button_detail button_secondary button_secondary_third" onclick="deleteProduct()">
+                                <div>
+                                    <p class="action_label">Eliminar</p>
+                                    <img class="action_icon" src="../images/ic_action_delete.svg" width="28px" height="28px"/>
+                                </div>
+                            </button>
+                            <button class="button_detail button_secondary button_secondary_third discard_edit hidden" onclick="discardProduct()">
+                                <div>
+                                    <p class="action_label">Descartar</p>
+                                    <img class="action_icon" src="../images/ic_action_reject_red.svg" width="28px" height="28px"/>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <hr class="horizontal_rule horizontal_rule_detail">
+
+                    <div class="grid_item_detail">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputName">Nombre*</label>
+                                <input type="text" id="inputName" placeholder="Nombre" class="editable">
+                                <div id="inputName_error" class="invalid-tooltip" style="display:none">Campo obligatório.</div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputReference">Referencia*</label>
+                                <input type="text" id="inputReference" placeholder="Referencia" class="editable">
+                                <div id="inputReference_error" class="invalid-tooltip" style="display:none">Campo obligatório.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCategory">Categoría*</label>
+                                <select id="inputCategory" class="form-control selector editable">
+                                </select>
+                                <div id="inputCategory_error" class="invalid-tooltip" style="display:none">Campo obligatório.</div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputSubcategory">Subcategoría*</label>
+                                <select id="inputSubcategory" class="form-control selector" disabled>
+                                </select>
+                                <div id="inputSubcategory_error" class="invalid-tooltip" style="display:none">Campo obligatório.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputStockState">Estado estoc*</label>
+                                <select id="inputStockState" class="form-control selector editable" onchange="onChangeStockState()">
+                                    <option selected value="0">Seleccione una opción...</option>
+                                    <option value="1">Disponible</option>
+                                    <option value="2">Descatalogado</option>
+                                    <option value="3">Outlet</option>
+                                    <option value="4">Por llegar</option>
+                                    <option value="5">No disponible</option>
+                                </select>
+                                <div id="inputStockState_error" class="invalid-tooltip" style="display:none">Campo obligatório.</div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputStock">Estoc*</label>
+                                <input type="number" id="inputStock" placeholder="400" class="editable"/>
+                                <div id="inputStock_error" class="invalid-tooltip" style="display:none">Campo obligatório.</div>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inputExpectedArrival">Recepción prevista</label>
+                                <input type="date" id="inputExpectedArrival" disabled>
+                                <div id="inputExpectedArrival_error" class="invalid-tooltip" style="display:none">Campo obligatório.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="inputPrice">Precio*</label>
+                                <input type="text" id="inputPrice" placeholder="49.95€" class="editable">
+                                <div id="inputPrice_error" class="invalid-tooltip" style="display:none">Campo obligatório.</div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputOutletPrice">Precio outlet*</label>
+                                <input type="text" id="inputOutletPrice" placeholder="29.95€" class="editable">
+                                <div id="inputOutletPrice_error" class="invalid-tooltip" style="display:none">Campo obligatório.</div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputVisible">Visibilidad del producto*</label>
+                                <select id="inputVisible" class="form-control selector editable">
+                                    <option value="1" selected>Visible</option>
+                                    <option value="2">No visible</option>
+                                </select>
+                                <div id="inputVisible_error" class="invalid-tooltip" style="display:none">Campo obligatório.</div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputDescription">Descripción producto*</label>
+                                <textarea id="inputDescription" placeholder="" class="editable"></textarea>
+                                <div id="inputDescription_error" class="invalid-tooltip" style="display:none">Campo obligatório.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputProductID">Identificador producto</label>
+                                <input type="text" id="inputProductID" placeholder="" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputOffer">Identificador oferta</label>
+                                <input type="text" id="inputOffer" placeholder="" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCreationDate">Fecha de creación</label>
+                                <input type="text" id="inputCreationDate" disabled>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputUpdateDate">Fecha de actualización</label>
+                                <input type="text" id="inputUpdateDate" placeholder="" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="empty_grid" class="empty_grid_container hidden shadow">
+            <p class="info_title"> ¡ATENCIÓN! </p>
+            <p class="info"> Aún no ha configurado ningún producto. Se trata del segundo paso para poder empezar a trabajar con Fiddeal. Esto permitira a sus clientes ver que ofrece a través de la aplicación móbil, realizar el cobro a través del apartado de facturación y gestionar el estoc.</p>
+            <p> ¡Haga click en el siguiente icono para empezar!</p>
+            <img id="create_first" src="../images/ic_action_new_dark.svg" class="image_action" title="Nuevo producto" onclick="newProduct()" alt="Crear producto">
+        </div>
+    </div>
+</body>
+</html>

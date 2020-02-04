@@ -1,0 +1,146 @@
+body{
+    font-size: 0.9vw;
+}
+
+#content:after{
+     content:"";
+     display:table;
+     clear:both;
+ }
+
+#content{
+    background-color: transparent;
+    width: 70%;
+    min-width: 750px;
+    height: auto;
+    max-height: 100%;
+    overflow: auto;
+    position: absolute;
+    margin:auto;
+}
+
+.labelForm{
+    font-weight: bold;
+    color: #454545;
+    font-size: 120%;
+}
+
+.bg{
+    display: block;
+    height: 100%;
+    background: url('../images/bg_image.png') no-repeat center;
+    background-size: cover;
+}
+
+.container{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6px;
+    position: relative;
+}
+
+#contentSignin, #contentSignup{
+    float:left;
+}
+
+#contentSignin{
+    width:60%;
+    height:100%;
+    padding:65px 115px 40px 45px;
+    background: #FCFCFC;
+}
+
+#contentSignup{
+    padding:65px 45px 40px 45px;
+    width:40%;
+    height:100%;
+    background:#212121;
+}
+
+.form_title{
+    margin-bottom: 35px;
+}
+
+#button_login{
+    margin-bottom: 10px;
+    width: 60%;
+}
+
+#signupTitle{
+    color: #FCFCFC;
+}
+
+#button_signup{
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.modal-header{
+    background: url("../images/bg_login.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    padding: 15px 45px;
+    column-gap: 20px;
+}
+
+.modal-header:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.form_title_white{
+    color: #FCFCFC;
+    font-size: 1.4vw;
+    vertical-align: center;
+    font-weight: bolder;
+    width: auto;
+    height: auto;
+    margin: 10px 0;
+}
+
+.signup_button{
+    float:right;
+    width: 20%;
+}
+
+.form_close:hover{
+    opacity: 0.6;
+}
+
+.form_close{
+    opacity:1;
+    float:right;
+    margin: 0;
+    height: 40px;
+}
+
+
+
+.modal-body{
+    margin: 15px;
+}
+
+.custom-control-label::before,
+.custom-control-label::after {
+    width: 1.20rem;
+    height: 1.20rem;
+}.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+     background-color:#388e3c;
+ }
+
+ #signup_content{
+     max-height: 95% !important;
+     width: 90% !important;
+ }
+
+ #signup_content .form-group{
+     margin-bottom: 25px;
+ }
+
+ #signup_content .form-row{
+     padding-left: 5px !important;
+     padding-right: 5px !important;
+ }

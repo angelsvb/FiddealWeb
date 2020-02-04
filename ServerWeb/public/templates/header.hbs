@@ -1,0 +1,39 @@
+<div id="header">
+    <ul>
+        <img id ="img_header" src = "../images/favicon_black.png" style="cursor:pointer" onclick="window.location = '/html/facturacio.html'">
+        <li><p>Fiddeal</p></li>
+        <li><p> | </p></li>
+        <li><p> {{name}} </p></li>
+        <li style="float:right" class="hoverable" id="hamburgerMenuButton_container" onclick="$('#hamburgerMenu').addClass('visible').removeClass('hidden')">
+            <div id="hamburgerMenu_button"></div>
+        </li>
+        <li style="float:right"><p>{{menu_label}}</p></li>
+        <li style="float:right"><p> | </p></li>
+        <li style="float:right"><p> {{current}} </p></li>
+    </ul>
+</div>
+
+
+<div id="hamburgerMenu" class="hamburgerMenu hidden">
+    <div id="hamburgerMenu_container" class="shadow">
+        <div id="hamburgerMenu_header" class ="hamburgerMenu_header shadow_header">
+            <img src="../images/ic_close.svg"         width="36px" height="36px" class="form_close hoverable_button" style="float:right" onclick="$(this).parent().parent().parent().addClass('hidden').removeClass('visible')"/>
+            <img src = "../images/appicon_white.svg"  class="app_icon">
+        </div>
+        <div id="hamburgerMenu_content">
+            <p class="hamburgerMenu_titles" onclick="window.location='/html/perfil.html'">{{option_profile}}</p>
+            <p class="hamburgerMenu_titles" onclick="window.location='/html/horari.html'">{{option_schedule}}</p>
+            <p class="hamburgerMenu_titles" onclick="changePasswordDialog()">{{option_change_password}}</p>
+            <div class="horizontal_rule"></div>
+            <p class="hamburgerMenu_titles" onclick="window.location='/html/facturacio.html'">{{option_billing}}</p>
+            <p class="hamburgerMenu_titles" onclick="window.location='/html/compres.html'">{{option_purchases}}</p>
+            <!-- <p class="hamburgerMenu_titles" onclick="window.location='/html/compres_manuals.html'"> Gestión de compras manuales </p> -->
+            <p class="hamburgerMenu_titles" onclick="window.location='/html/productes.html'">{{option_products}}</p>
+            <!-- <p class="hamburgerMenu_titles" onclick="window.location='/html/ofertes.html'"> Gestión de ofertas</p> -->
+            <p class="hamburgerMenu_titles" onclick="window.location='/html/categories.html'">{{option_categories}}</p>
+            <div class="horizontal_rule"></div>
+            <p class="hamburgerMenu_titles" onclick="supportDialog()"><i class="fas fa-toolbox hamburgerMenu_icon"></i>{{option_customer_service}}</p>
+            <p class="hamburgerMenu_titles" onclick="closeSession()"><i class="fas fa-toolbox hamburgerMenu_icon"></i>{{option_close_session}}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div id="close_session" class="modal">
+    <div id="information_container" class="shadow dialog_container">
+        <div id="close_session_header" class ="dialog_header">
+            <img class="dialogIcon" src="../images/ic_close_session.svg"/>
+            <h3> {{title}} </h3>
+        </div>
+        <div id="close_session_content" class ="dialog_content">
+            <p class="dialog_message"> {{message}} </p>
+        </div>
+        <div id ="close_session_footer">
+            {{#if showHorizontalRule }}
+                <div id ="hr_information" class="hr"></div>
+            {{/if}}
+            <div id="close_session_buttons" style="width:100%;margin-bottom: 25px;">
+                <button class="button_grey column_49" style="margin-right: 0.5%" onClick="$('#close_session').addClass('hidden').removeClass('visible')">{{cancel}}</button>
+                <button class="button_yellow column_49" style="margin-left: 0.5%"{{{onAccept}}}>{{accept}}</button>
+            </div>
+        </div>
+    </div>
+</div>

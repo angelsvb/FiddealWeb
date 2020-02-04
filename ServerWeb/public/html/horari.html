@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Fiddeal - Horario de apertura </title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <script type='text/javascript' src="../javascripts/utilities/jquery-functions.js"></script>
+    <script type='text/javascript' src="../bundled/horari.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
+    <link rel="stylesheet" href="../stylesheets/dialogs.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/horari.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/style.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/header_and_footer.css" type="text/css">
+
+    <!-- COOKIES -->
+    <link rel="stylesheet" type="text/css" href="../stylesheets/cookies_custom.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- END COOKIES -->
+
+    <script> initializeBefore() </script>
+</head>
+<body onLoad="initializeAfter()">
+<div id="content_container">
+    <div id="content">
+        <div class="form-row">
+            <div id="header_profile">
+                <p class="form_title light column_80"> HORARIO DE APERTURA </p>
+            </div>
+            <div class="horizontal_rule column_97"></div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-8">
+                    <label class="col-form-label">· LUNES: </label>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label right"> de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="monday_1" placeholder="Email">
+                    <div id="monday_1_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4 row">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="monday_2" placeholder="Email">
+                    <div id="monday_2_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> y de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="monday_3" placeholder="Email">
+                    <div id="monday_3_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="monday_4" placeholder="Email">
+                    <div id="monday_4_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="monday_closed" onclick="disableScheduleInputs_closed('monday')">
+                    <label class="custom-control-label" for="monday_closed">Cerrado</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="monday_24h" onclick="disableScheduleInputs_24h('monday')">
+                    <label class="custom-control-label" for="monday_24h">Abierto 24H</label>
+                </div>
+            </div>
+            <div class="col-sm-1 form-group row align-self-center">
+                <img src="../images/ic_action_edit.svg" class="form_action" id="monday_action">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-8">
+                    <label class="col-form-label">· MARTES: </label>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label right"> de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="tuesday_1" placeholder="Email">
+                    <div id="tuesday_1_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4 row">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="tuesday_2" placeholder="Email">
+                    <div id="tuesday_2_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> y de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="tuesday_3" placeholder="Email">
+                    <div id="tuesday_3_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="tuesday_4" placeholder="Email">
+                    <div id="tuesday_4_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="tuesday_closed" onclick="disableScheduleInputs_closed('tuesday')">
+                    <label class="custom-control-label" for="tuesday_closed">Cerrado</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="tuesday_24h" onclick="disableScheduleInputs_24h('tuesday')">
+                    <label class="custom-control-label" for="tuesday_24h">Abierto 24H</label>
+                </div>
+            </div>
+            <div class="col-sm-1 form-group row align-self-center">
+                <img src="../images/ic_action_edit.svg" class="form_action" id="tuesday_action">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-10">
+                    <label class="col-form-label">· MIERCOLES: </label>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label right"> de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="wednesday_1" placeholder="Email">
+                    <div id="wednesday_1_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4 row">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="wednesday_2" placeholder="Email">
+                    <div id="wednesday_2_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> y de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="wednesday_3" placeholder="Email">
+                    <div id="wednesday_3_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="wednesday_4" placeholder="Email">
+                    <div id="wednesday_4_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="wednesday_closed" onclick="disableScheduleInputs_closed('wednesday')">
+                    <label class="custom-control-label" for="wednesday_closed">Cerrado</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="wednesday_24h" onclick="disableScheduleInputs_24h('wednesday')">
+                    <label class="custom-control-label" for="wednesday_24h">Abierto 24H</label>
+                </div>
+            </div>
+            <div class="col-sm-1 form-group row align-self-center">
+                <img src="../images/ic_action_edit.svg" class="form_action" id="wednesday_action">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-8">
+                    <label class="col-form-label">· JUEVES: </label>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label right"> de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="thursday_1" placeholder="Email">
+                    <div id="thursday_1_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4 row">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="thursday_2" placeholder="Email">
+                    <div id="thursday_2_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> y de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="thursday_3" placeholder="Email">
+                    <div id="thursday_3_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="thursday_4" placeholder="Email">
+                    <div id="thursday_4_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="thursday_closed" onclick="disableScheduleInputs_closed('thursday')">
+                    <label class="custom-control-label" for="thursday_closed">Cerrado</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="thursday_24h" onclick="disableScheduleInputs_24h('thursday')">
+                    <label class="custom-control-label" for="thursday_24h">Abierto 24H</label>
+                </div>
+            </div>
+            <div class="col-sm-1 form-group row align-self-center">
+                <img src="../images/ic_action_edit.svg" class="form_action" id="thursday_action">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-8">
+                    <label class="col-form-label">· VIERNES: </label>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label right"> de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="friday_1">
+                    <div id="friday_1_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4 row">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="friday_2">
+                    <div id="friday_2_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> y de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="friday_3">
+                    <div id="friday_3_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="friday_4">
+                    <div id="friday_4_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="friday_closed" onclick="disableScheduleInputs_closed('friday')">
+                    <label class="custom-control-label" for="friday_closed">Cerrado</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="friday_24h" onclick="disableScheduleInputs_24h('friday')">
+                    <label class="custom-control-label" for="friday_24h">Abierto 24H</label>
+                </div>
+            </div>
+            <div class="col-sm-1 form-group row align-self-center">
+                <img src="../images/ic_action_edit.svg" class="form_action" id="friday_action">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-8">
+                    <label class="col-form-label">· SABADO: </label>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label right"> de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="saturday_1">
+                    <div id="saturday_1_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4 row">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="saturday_2">
+                    <div id="saturday_2_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> y de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="saturday_3">
+                    <div id="saturday_3_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="saturday_4">
+                    <div id="saturday_4_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="saturday_closed" onclick="disableScheduleInputs_closed('saturday')">
+                    <label class="custom-control-label" for="saturday_closed">Cerrado</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="saturday_24h" onclick="disableScheduleInputs_24h('saturday')">
+                    <label class="custom-control-label" for="saturday_24h">Abierto 24H</label>
+                </div>
+            </div>
+            <div class="col-sm-1 form-group row align-self-center">
+                <img src="../images/ic_action_edit.svg" class="form_action" id="saturday_action">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2 form-group row align-self-center" style="margin-top: 8px">
+                <div class="col-md-8">
+                    <label class="col-form-label">· DOMINGO: </label>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row align-self-center" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label right"> de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="sunday_1">
+                    <div id="sunday_1_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row align-self-center" style="margin-top: 8px">
+                <div class="col-md-4 row">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="sunday_2">
+                    <div id="sunday_2_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row align-self-center" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> y de </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="sunday_3">
+                    <div id="sunday_3_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row align-self-center" style="margin-top: 8px">
+                <div class="col-md-4">
+                    <label class="col-form-label center"> a </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="time" class="form-control" id="sunday_4">
+                    <div id="sunday_4_error" class="invalid-tooltip" style="display:none"> Campo obligatório. </div>
+                </div>
+            </div>
+            <div class="col-sm-2 form-group row">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="sunday_closed" onclick="disableScheduleInputs_closed('sunday')">
+                    <label class="custom-control-label" for="sunday_closed">Cerrado</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="sunday_24h" onclick="disableScheduleInputs_24h('sunday')">
+                    <label class="custom-control-label" for="sunday_24h">Abierto 24H</label>
+                </div>
+            </div>
+            <div class="col-sm-1 form-group row align-self-center">
+                <img src="../images/ic_action_edit.svg" class="form_action" id="sunday_action" >
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

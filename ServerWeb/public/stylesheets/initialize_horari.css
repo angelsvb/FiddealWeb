@@ -1,0 +1,118 @@
+label{
+    font-weight: 700;
+    color: #454545;
+}
+
+#content{
+    height: auto;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+#content_container{
+    overflow: hidden;
+    height: auto;
+    min-height: 90%;
+    padding:25px;
+}
+
+#content_container:after{
+    content:"";
+    display:table;
+    clear:both;
+}
+
+#header_profile{
+    padding-left: 15px;
+    padding-right: 15px;
+    width:100%;
+}
+
+.horizontal_rule{
+    margin-bottom: 25px;
+}
+
+.dialog_content > .row{
+    padding-left: 25px;
+}
+
+label, input{
+    font-size: 110% !important;
+}
+
+input[type=time]{
+    line-height: 1 !important;
+    padding: 0px;
+}
+
+.center{
+    text-align: center;
+    width: 100%;
+}
+
+.right{
+    text-align: right;
+    width: 100%;
+}
+
+.form_action{
+    width: 38px;
+    height: 38px;
+    margin: 0px;
+}
+
+.custom-checkbox > label {
+    font-size: 95% !important;
+}
+
+.custom-checkbox{
+    width: 100%;
+    margin-left: 25px;
+}
+
+#initialize_horari .dialog_content{
+    padding: 2%;
+}
+
+#initialize_horari .form-group{
+    margin-bottom: 0.5%;
+}
+
+#initialize_horari .invalid-tooltip{
+    top: 80%;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+    background-color:#388e3c;
+}
+
+.custom-checkbox .custom-control-input:checked:disabled~.custom-control-label::before{
+    background-color:#388e3c;
+}
+
+#initialize_horari .dialog_container{
+    height: auto;
+    max-height: 95%;
+    min-width: 1400px;
+    max-width: 90%;
+    overflow:hidden;
+}
+
+#initialize_horari .form-group:last-child{
+    margin-top: 10px;
+}
+
+#initialize_horari_content .form_title{
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+#initialize_horari_content .form-group > div{
+    padding-left:15px !important;
+    padding-right: 10px !important;
+}
+
+.button_green{
+    width:90%;
+}
+

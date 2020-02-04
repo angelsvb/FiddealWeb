@@ -1,0 +1,40 @@
+<div id="dialog_sale_info" class="modal">
+    <div id="purchaseInfoContainer" class="shadow dialog_container">
+        <div id="manualProductEntry_header" class ="dialog_header" style="background-color: #388e3c">
+            <img class ="dialogIcon" src="../images/ic_price.svg"/>
+            <h3>{{dialog_title}}</h3>
+        </div>
+        <div id="addStockProduct_content" class ="dialog_content">
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>{{subtotal_label}}</label>
+                        <input type="text" class="form-control" value="{{subtotal}}" disabled style="margin-bottom: 5px">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>{{discount_label}}</label>
+                        <input type="text" class="form-control" value="{{discount}}" disabled style="margin-bottom: 5px">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="Total">{{total_label}}</label>
+                        <input type="text" class="form-control" value="{{total}}" disabled style="margin-bottom: 5px">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Total">{{change_label}}</label>
+                        <input type="text" class="form-control" value="{{change}}" disabled style="margin-bottom: 5px">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="Total">{{customer_label}}</label>
+                        <input type="text" class="form-control" value="{{user}}" disabled style="margin-bottom: 5px">
+                    </div>
+                </div>
+            </form>
+            <button class="button_green dialog_button full_width" onClick="saveSale()">{{finalize}}</button>
+            <button class="button_grey dialog_button full_width" onclick="cancelInvoiceInfo()">{{cancel}}</button>
+        </div>
+    </div>
+</div>

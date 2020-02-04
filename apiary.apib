@@ -1,0 +1,1926 @@
+tuHOST: http://polls.apiblueprint.org/
+
+#Treball de final de grau
+
+Documentació referent a les crides HTTP per el treball de final de grau de l'alumne
+Pavel Khralovich a la Universitat de Girona. Les característiques principals de l'API són:
+    <br> - Totes les peticions rebran i enviaràn les dades en <b> format JSON.</b>
+    <br> - Totes les peticions <b>retornaran amb codi 200. </b>
+    <br> - Totes les peticions tindran un camp <b> resultOK en indicar el resultat.</b>
+    <br> - Totes les peticions tindran un camp <b> message en indicar l'error. </b>
+    <br> - Totes les peticions tindran un camp <b> entity en la resposta. </b>
+    <br> - Totes les peticions tindran un camp <b> errorCode en la resposta </b>
+
+# Estructura objectes  
+# Usuari client mòbil
+Representa l'objecte usuari de l'aplicació mòbil. Les peticions associades a aquest tipus d'usuari
+hauràn d'enviar un paràmetre a la URL amb el format -> **type=1**.
+
+---
+**Atributs de BBDD**
+
+- UserID `(int,FIXED)`: codi identificatiu de l'usuari.
+- Email `(String,FIXED)`: correu electrònic de l'usuari. Necessàri per rebre informació, iniciar sessió i realzat un registre. Valor no repetible. 
+- CP `(int, Length = 5)`: codi postal de l'usuari. Utilitzat per localitzar ofertes que puguin ser interessants. 
+- Name `(String)`: nom de l'usuari. Permet identificar l'usuari a les empreses en el moment de registrar compres. 
+- Surname `(String)`: cognom de l'usuari. Permet identificar l'usuari a les empreses en el moment de registrar compres. 
+- BornDate `(Date)`: data de naixement de l'usuari. Necessària per validar la majoria d'edat. 
+- PolicyAccepted `(Bool)`: indica si l'usuari ha acceptat la política de privacitat i les condicions d´ús de l'aplicació. 
+- IsActive `(Bool)`: indica si l'usuari ha estat validat mitjançant el correu electrònic.
+- DNI `(String)`: indica el codi del carnet d'identitat de l'usuari. Permet identificar-lo per part de les empreses en el moment de realitzar compres. 
+- DateAcceptation `(date)`: indica la data en la que l'usuari ha acceptat la política de privacitat i les condicions d´ús de l'aplicació. 
+- Password `(String)`: contrasenya d'accéss a les dades de l'usuari
+- CreationDate `(date)`: indica la data en la que s'ha creat l'usuari
+- ActivationCode `(int, Length = 8)`: codi d'activació que cal introduir perquè l'usuari es pugui utilitzar. 
+- Phone `(int): telèfon de l'usuari`
+- Location `(Location)`: dades de la localització de l'usuari, que inclouen el pais, la provincia i el municipi.
+---
+**Altres atributs**
+
+- ConfirmPassword `(String)`: contrasenya de confirmació que cal enviar en el moment del registre o del canvi/recuperació de contrasenya. 
+- Token `(String)`: credencials que cal enviar per validar l'usuari a cada petició que necessiti autenticació. Es reben en el login i la confirmació de registre.
+- DateToken `(date)`: data de recepció del token. Cal enviar-ho amb cada petició que necessiti autenticació.
+- Type `(int, value = 1)`: tipus d'usuari. Per el client mòbil sempre serà 1 i per el client web 2.
+
+
+# Usuari - Location
+
+
+# Oferta d'establiment (Client web)
+Representa l'objecte usuari de l'aplicació mòbil. Les peticions associades a aquest tipus d'usuari
+hauràn d'enviar un paràmetre a la URL amb el format -> **type=1**.
+
+---
+**Atributs de BBDD**
+
+- OfferID `(int,FIXED)`: codi identificatiu de l'oferta.
+- BusinessID `(int,FIXED)`: codi identificatiu de l'empresa que fa la oferta
+- CreationDate `(date,FIXED)`: data de creació de l'oferta.
+- ValidSinceDate `(date, INCREMENTABLE`): data d'entrada en vigor de l'oferta. Es pot ampliar i reduïr. 
+- ExpirationDate `(date, INCREMENTABLE, >= ValidSinceDate)`: data d'acabament de l'oferta. Es pot ampliar, però no reduïr.
+- OfferType `(int, range: [0-2])`: tipus de l'oferta. Tipus 0 - aplicable a tothom. Tipus 1 - Aplicable a usuaris aplicació. Tipus 2 - Aplicable a usuaris amb aplicació i clients del local. 
+- Categories `(int[])`: categoria dels productes en oferta.  
+- Subcategories `(int[])`: subcategories dels productes dels que consta l'oferta.   
+- ProductsID `(int[])`: indica els productes de la categoria i subcategories, afectats per l'oferta.
+- Description `(String)`: indica una descripció de l'oferta. 
+- Src `(String)`: indica una URL per la imatge. Indica una URL per l'icona de l'oferta. 
+- ByteImage `(byte[])`: indica els bytes de la imatge. Si s'envia, s'utilitzarà aquesta imatge abans que la indicada en Src.
+- BusinessData `(Business,FIXED)`: dades de l'establiment que fa l'oferta. Consistirà d'una part de l'objecte empresa, per evitar enviar massa informació. 
+---
+
+
+# Establiment
+---
+**Atributs de BBDD**
+
+- BusinessID `(int,FIXED)`: codi identificatiu de l'empresa que fa la oferta
+- CreationDate `(date,FIXED)`: data en la que s'ha registrar l'empresa.
+- Name `(date)`: nom de l'establiment. 
+- Email `(date, FIXED)`: correu electrònic de l'establiment i també d'accéss.
+- CIF `(int, FIXED)`: carnet d'identitat de l'establiment.
+- Categories `(int)`: categoria dels productes dels que disposa l'establiment. 
+- Subcategories `(int[])`: subcategories dels productes dels que disposa l'establiment.   
+- Type `(enum)`: indica el tipus d'establiment (botiga, perruqueria, veterinari, etc).
+- CP `(int)`: codi postal de l'establiment. 
+- Municipi `(String)`: municipi de l'establiment.
+- Provincia `(byte[])`: provincia de l'establiment.
+- Comunitat `(business,FIXED)`: comunitat de l'establiment .
+- Horari: `(Horari)`: horari de l'empresa.
+- Direcció `(String)`: direcció de l'empresa.
+- Password `(String)`: credencials d'accés a l'aplicació.
+- PolicyAccepted `(Bool)`: indica si l'empresa ha acceptat la política de privacitat i les condicions d´ús de l'aplicació. 
+- IsActive `(Bool)`: indica si l'empresa ha estat validat mitjançant el correu electrònic.
+- ActivationCode `(int, Length = 8)`: codi d'activació que cal introduir perquè l'empresa es pugui utilitzar.
+- Productes `(Product[])`: conjunt de productes dels que disposa l'empresa.
+- Ofertes `(int[])`: referència a les ofertes de l'establiment.
+---
+**Altres atributs**
+
+- ConfirmPassword `(String)`: contrasenya de confirmació que cal enviar en el moment del registre o del canvi/recuperació de contrasenya. 
+- Token `(String)`: credencials que cal enviar per validar l'usuari a cada petició que necessiti autenticació. Es reben en el login i la confirmació de registre.
+- DateToken `(date)`: data de recepció del token. Cal enviar-ho amb cada petició que necessiti autenticació.
+- Type `(int, value = 2)`: tipus d'usuari. Per el client mòbil sempre serà 1 i per el client web 2.
+
+# Establiment - Horari
+Agafar disseny de app
+
+# Producte
+Per dissenyar
+
+# Producte - Categoria
+Per dissenyar
+
+# Producte - Subcategoria
+Per dissenyar
+
+# Compra
+Per dissenyar
+
+# Compra - RelacioProductes
+Per dissenyar
+
+# Estat fidelització (usuari - empresa)
+Per dissenyar
+
+
+## LOGIN USUARIS [/signin?type={type}]
+
+Crida a l'api per tal d'iniciar sessió en l'aplicació, tant els usuaris client (mòbil)
+com els usuaris empresa (web). També permetrà validar el token quan es torni a arrancar l'aplicació.
+    
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que fa el registre.
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+
+### Login d'usuari[POST]
+
++ Request (application/json) 
+
+        {
+            "Email": "user123@gmail.com",
+            "Password":  "xxxxxx",
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Login mobile ok!",
+            "ErrorCode": 0,
+            "Entity": {
+                "Token": "afasamnioasdniakwa231",
+                "IsActive": true,
+                "Exists": true,
+                "PolicyAccepted": true,
+                "User":{
+                    "Email": "pkhraudg@gmail.com",
+                    "Name":"Pavel",
+                    "Surname":"Khralovich",
+                    "BornDate":"15/02/1990",
+                    "PolicyAccepted":true,
+                    "DNI":"41674680Z",
+                    "UserId":12312412,
+                    "DateAcceptation":"22/06/2018",
+                    "UserId":3123,
+                    "Photo": [],
+                    "Location":{
+                        "CP": 17007,
+                        "countryName":"España",
+                        "countryId":1,
+                        "provinciaName":"Girona",
+                        "provinciaId":20,
+                        "municipi":"Girona",
+                        "prefixTelefonic":34
+                    },
+                    "Phone":651231232
+                }
+            }
+        }
+        
+### Validació token[PUT]
+
++ Request (application/json) 
+
+        {
+            "Token": "aabsasdg"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Token validation ok!",
+            "ErrorCode": 0,
+            "Entity": {
+                "ValidationOK": "true",
+                "User":{
+                    "Email": "pkhraudg@gmail.com",
+                    "Name":"Pavel",
+                    "Surname":"Khralovich",
+                    "BornDate":"15/02/1990",
+                    "PolicyAccepted":true,
+                    "DNI":"41674680Z",
+                    "UserId":12312412,
+                    "DateAcceptation":"22/06/2018",
+                    "UserId":3123,
+                    "Photo": [],
+                    "Location":{
+                        "CP": 17007,
+                        "countryName":"España",
+                        "countryId":1,
+                        "provinciaName":"Girona",
+                        "provinciaId":20,
+                        "municipi":"Girona",
+                        "prefixTelefonic":34
+                    },
+                    "Phone":651231232
+                }
+            }
+        }
+        
+
+## DADES USUARIS [/user?type={type}&token={token}&user={user}&userId={userId}&requestedType={requestedType}]
+    
+Crida a l'api per tal de registrar-se en l'aplicació, tant els usuaris client (mòbil)
+com els usuaris empresa (web). També permet modificar, eliminar o obtenir les dades d'un usuari.
+Comportament GET amb token -> indicant user o userId es donaràn les dades de l'usuari tant si es empresa o client.
+Comportament GET sense token -> nomes es dirà si existeix o no aquell usuari, sense proporcionar dades. 
+
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que es vol obtenir/eliminar/modificar.
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+    + requestedType (enum[int]) - Tipus d'usuari que es vol obtenir. Només per GET.
+    + token (string,optional) - Token de l'usuari que ha iniciat sessió. Només cal per l'obtenció de dades, eliminació i modificació.
+    + user (string,optional) - Correu de l'usuari/establiment que del que es vol consultar l'existència o les dades. Només per GET.
+    + userId (int,optional) - Id de l'usuari/establiment que del que es vol consultar l'existència o les dades. Només per GET. 
+
+
+### Registre d'usuari[POST]
+
++ Request (application/json) 
+
+        {
+           "Email": "pkhraudg@gmail.com",
+            "Name":"Pavel",
+            "Surname":"Khralovich",
+            "BornDate":"15/02/1990",
+            "PolicyAccepted":true,
+            "DNI":"41674680Z",
+            "DateAcceptation":"22/06/2018",
+            "UserId":3123,
+            "Photo": [],
+            "Location":{
+                        "CP": 17007,
+                        "countryName":"España",
+                        "countryId":1,
+                        "provinciaName":"Girona",
+                        "provinciaId":20,
+                        "municipi":"Girona",
+                        "prefixTelefonic":34
+            },
+            "Phone":651231232
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Signup mobile ok!",
+            "ErrorCode": 0,
+            "Entity": { }
+        }
+        
+### Modificació dades usuari [PUT]
+
++ Request (application/json) 
+
+        {
+            "Email": "pkhraudg@gmail.com",
+            "Name":"Pavel",
+            "Surname":"Khralovich",
+            "BornDate":"15/02/1990",
+            "PolicyAccepted":true,
+            "DNI":"41674680Z",
+            "UserId":12312412,
+            "DateAcceptation":"22/06/2018",
+            "UserId":3123,
+            "Photo": [],
+            "Location":{
+                "CP": 17007,
+                "countryName":"España",
+                "countryId":1,
+                "provinciaName":"Girona",
+                "provinciaId":20,
+                "municipi":"Girona",
+                "prefixTelefonic":34
+            },
+            "Phone":651231232
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "User data modified!",
+            "ErrorCode": 0,
+            "Entity": {}
+        }
+
+### Obtenció dades usuari [GET]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Get user data ok!",
+            "ErrorCode": 0,
+            "Entity": {
+                "Exists": "true",
+                "IsActive":"false",
+                "User":{
+                    "Email": "pkhraudg@gmail.com",
+                    "Name":"Pavel",
+                    "Surname":"Khralovich",
+                    "BornDate":"15/02/1990",
+                    "PolicyAccepted":true,
+                    "DNI":"41674680Z",
+                    "UserId":12312412,
+                    "DateAcceptation":"22/06/2018",
+                    "UserId":3123,
+                    "Photo": [],
+                    "Location":{
+                        "CP": 17007,
+                        "countryName":"España",
+                        "countryId":1,
+                        "provinciaName":"Girona",
+                        "provinciaId":20,
+                        "municipi":"Girona",
+                        "prefixTelefonic":34
+                    },
+                    "Phone":651231232
+                },
+                "Business":{
+                    "ActivationCode":"",
+                    "BusinessID":4,"CIF":"",
+                    "CP":0,
+                    "Categories":[],
+                    "Comunitat":"Catalunya",
+                    "CreationDate":"01/01/1900",
+                    "Direccio":"c/Jaume I, 2",
+                    "Email":"",
+                    "Horari":{
+                        "mondayToFriday":[{"end":"20/07/2018","start":"20/07/2018"},{"end":"20/07/2018","start":"20/07/2018"}],
+                        "saturday":[{
+                            "end":"20/07/2018",
+                            "start":"20/07/2018"}
+                        ],
+                        "sunday":[]},
+                    "IsActive":true,
+                    "Municipi":"Girona",
+                    "Name":"Parfois S.A.",
+                    "Password":"",
+                    "PolicyAccepted":true,
+                    "Productes":[],
+                    "Provincia":"Girona",
+                    "Subcategories":[],
+                    "Type":"SHOP"
+                }
+            }
+        }
+
+### Eliminació usuari[DELETE]
+
++ Request (application/json) 
+
+        {
+            "Email": "user123",
+            "Password":  "xxxxxx",
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "User delete ok!",
+            "ErrorCode": 0,
+            "Entity": {}
+        }
+
+## ACTIVACIÓ D'USUARI [/activation?email={email}&type={type}]
+
+Permetrà activar els usuaris que es registrin al sistema a partir d'un codi que s'enviarà per correu electrònic. També permetrà
+demanar que s'envii aquest codi i cancel·lar el registre d'un usuari. 
+
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que vol obtenir el codi de confirmació
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+    + email (string) - Correu de l'usuari registrat prèviament
+
+### Enviament / reenviament codi activació[GET]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Activation code sended!",
+            "ErrorCode": 0,
+            "Entity": { }
+        }
+        
+### Cancel·lació procès de registre[DELETE]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Signup erased!",
+            "ErrorCode": 0,
+            "Entity": {
+                "ErrorCode" : 0
+            }
+        }
+        
+### Activació d'usuari [PUT]
+
++ Request (application/json) 
+
+        {
+            "Password":"xafasfaw",
+            "ActivationCode":  "xxxxxx",
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Activation ok!",
+            "ErrorCode": 0,
+            "Entity": {
+                "Token": "agsavniasfnc",
+                "User":{
+                    "Email": "pkhraudg@gmail.com",
+                    "Name":"Pavel",
+                    "Surname":"Khralovich",
+                    "BornDate":"15/02/1990",
+                    "PolicyAccepted":true,
+                    "DNI":"41674680Z",
+                    "UserId":12312412,
+                    "DateAcceptation":"22/06/2018",
+                    "UserId":3123,
+                    "Photo": [],
+                    "Location":{
+                        "CP": 17007,
+                        "countryName":"España",
+                        "countryId":1,
+                        "provinciaName":"Girona",
+                        "provinciaId":20,
+                        "municipi":"Girona",
+                        "prefixTelefonic":34
+                    },
+                    "Phone":651231232
+                }
+            }
+        }        
+
+## CREDENCIALS USUARI [/users/credentials?type={type}&email={email}]
+
+Permet demanar l'enviament d'un correu de recuperació contrasenya, entrar una contrasenya nova a partir
+del codi de recuperació i modificar la contrasenya si es recorda. 
+
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que vol recuperar la contrasenya.
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+    + email (string) - Correu de l'usuari
+
+### Recuperació de contrasenya[GET]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Recovery password email sent!",
+            "ErrorCode":0,
+            "Entity": {}
+        }
+
+### Canvi contrasenya [PUT]
+
++ Request (application/json) 
+
+        {
+            "PasswordOld":  "xxxxxx",
+            "PasswordNew" : "yyyyy",
+            "ConfirmPasswordNew" : "yyyyy"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Password changed",
+            "ErrorCode": 0,
+            "Entity": {}
+        }
+
+### Confirmació recuperació contrasenya [POST]
+
++ Request (application/json) 
+
+        {
+            "RecoveryCode":  "xxxxxx",
+            "PasswordNew" : "yyyyy",
+            "ConfirmPasswordNew" : "yyyyy"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Password changed succesfully!",
+            "ErrorCode":0,
+            "Entity": {}
+        }
+        
+## OFERTES [/offers?type={type}&token={token}&start={start}&number={number}]
+
+Crida per obtenir les ofertes que es troben actualment disponibles per l'usuari. Independentment si 
+ha marcat aquestes ofertes com a seguides o no. 
+    
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que fa la petició. Sempre serà 1.
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+    + token (string) - Credencials d'usuari
+    + start (int,optional) - Posició desde la que es volen obtenir ofertes
+    + number(int,optional) - Nombre d'ofertes a obtenir
+
+
+### Obtenció d'ofertes[GET]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Result ok!",
+            "ErrorCode": 0,
+            "Entity": {
+                "Count": 3,
+                "Offers":[
+                    {
+                        "BusinessData":{
+                            "ActivationCode":"",
+                            "BusinessID":1,
+                            "CIF":"",
+                            "CP":0,
+                            "Categories":[],
+                            "ImageSrc":"https://farm8.staticflickr.com/7576/15943676807_f9dd97e8a3_o.png",
+                            "Comunitat":"Catalunya",
+                            "CreationDate":"01/01/1965",
+                            "Direccio":"Ctra Barcelona, 231",
+                            "Email":"gamgag@gmail.com",
+                            "Horari":{
+                                "mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"}],
+                                "saturday":[],"sunday":[]},
+                            "IsActive":true,
+                            "Municipi":"Girona",
+                            "Name":"MediaMarkt",
+                            "Password":"",
+                            "PolicyAccepted":true,
+                            "Productes":[
+                                {
+                                    "Name":"Product1",
+                                    "Value":23.40,
+                                    "Img":"https://images-na.ssl-images-amazon.com/images/I/71W6TP3k2DL._SY355_.jpg",
+                                    "hasStock":true,
+                                    "ProductId":1
+                                },{
+                                    "Name":"Product2",
+                                    "Value":1.40,
+                                    "Img":"https://d3295hraz5fimx.cloudfront.net/c/25-home_default/buzos-camisetas-poleras-de-ninos.jpg",
+                                    "hasStock":false,
+                                    "ProductId":2
+                                },{
+                                    "Name":"Product3",
+                                    "Value":11.99,
+                                    "Img":"https://images.mobilefun.co.uk/graphics/450pixelp/50050.jpg",
+                                    "hasStock":true,
+                                    "ProductId":3
+                                }
+                            ],
+                            "Provincia":"Girona",
+                            "Webpage":"www.prova.es",
+                            "Phone":931322312,
+                            "Description":"Fnac es una empresa francesa especializada en la venta de artículos electrónicos, ordenadores, artículos fotográficos, libros, música y vídeo. Ofrece también ventas por Internet y es uno de los grupos pioneros en este formato en su país de origen.",
+                            "Subcategories":[],
+                            "Type":"SHOP"
+                        },
+                        "Categories":["Electrónica","Informática","Electrodomésticos","Cocina"],
+                        "CreationDate":"08/10/2018",
+                        "Description":"Para celebrar el aniversario de nuestro negocio y el black friday, lanzamos una serie de productos con descuentos inmejorables para todo el público.",
+                        "ExpirationDate":"17/07/2018",
+                        "Following":false,
+                        "OfferID":0,
+                        "OfferScope":"OPENED",
+                        "OfferType":"CATEGORIES_RANGE",
+                        "ProductsID":[1,2,3],
+                        "Src":"https://farm8.staticflickr.com/7576/15943676807_f9dd97e8a3_o.png",
+                        "Subcategories":[],
+                        "ValidSinceDate":"10/07/2018",
+                        "maxPercentageOffer":60.0,
+                        "minPercentageOffer":20.0
+                    },{
+                        "BusinessData":{
+                            "ActivationCode":"",
+                            "BusinessID":2,
+                            "CIF":"",
+                            "CP":0,
+                            "ImageSrc":"https://farm8.staticflickr.com/7576/15943676807_f9dd97e8a3_o.png",
+                            "Categories":[],
+                            "Comunitat":"Catalunya",
+                            "CreationDate":"14/05/2017",
+                            "Direccio":"Av. Diagonal, 569",
+                            "Email":"test@gmail.com",
+                            "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[],"sunday":[]},
+                            "IsActive":true,
+                            "Municipi":"Barcelona",
+                            "Name":"FNAC",
+                            "Password":"",
+                            "PolicyAccepted":true,
+                            "Productes":[
+                                {
+                                    "Name":"Product1",
+                                    "Value":23.40,
+                                    "Img":"https://images-na.ssl-images-amazon.com/images/I/71W6TP3k2DL._SY355_.jpg",
+                                    "hasStock":true,
+                                    "ProductId":1
+                                },{
+                                    "Name":"Product2",
+                                    "Value":1.40,
+                                    "Img":"https://d3295hraz5fimx.cloudfront.net/c/25-home_default/buzos-camisetas-poleras-de-ninos.jpg",
+                                    "hasStock":false,
+                                    "ProductId":2
+                                },{
+                                    "Name":"Product3",
+                                    "Value":11.99,
+                                    "Img":"https://images.mobilefun.co.uk/graphics/450pixelp/50050.jpg",
+                                    "hasStock":true,
+                                    "ProductId":3
+                                }
+                            ],
+                            "Provincia":"Barcelona",
+                            "Webpage":"www.prova.es",
+                            "Phone":931322312,
+                            "Description":"Fnac es una empresa francesa especializada en la venta de artículos electrónicos, ordenadores, artículos fotográficos, libros, música y vídeo. Ofrece también ventas por Internet y es uno de los grupos pioneros en este formato en su país de origen.",
+                            "Subcategories":[],
+                            "Type":"SHOP"
+                        },
+                        "Categories":["Electrónica"],
+                        "CreationDate":"08/10/2018",
+                        "Description":"Aprovechando el lanzamiento de la nueva generación de procesadores Intel, ofrecemos descuentosen todo tipo de componentes electrònicos para su ordenador durante la próxima semana.",
+                        "ExpirationDate":"17/07/2018",
+                        "Following":false,
+                        "OfferID":0,
+                        "OfferScope":"OPENED",
+                        "OfferType":"CATEGORY_RANGE",
+                        "ProductsID":[1,2,3],
+                        "Src":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Fnac_Logo.svg/1200px-Fnac_Logo.svg.png",
+                        "Subcategories":[],
+                        "ValidSinceDate":"10/07/2018",
+                        "maxPercentageOffer":30.0,
+                        "minPercentageOffer":20.0
+                    },{
+                        "BusinessData":{
+                            "ActivationCode":"",
+                            "BusinessID":3,
+                            "CIF":"",
+                            "CP":0,
+                            "ImageSrc":"https://farm8.staticflickr.com/7576/15943676807_f9dd97e8a3_o.png",
+                            "Categories":[],
+                            "Comunitat":"Madrid",
+                            "CreationDate":"01/01/1900",
+                            "Direccio":"c/Guardia Civil, 2",
+                            "Email":"prova@yahoo.es",
+                            "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"},{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[{"end":"21/07/2018","start":"21/07/2018"}],"sunday":[]},
+                            "IsActive":true,
+                            "Municipi":"Madrid",
+                            "Name":"PcComponentes S.A.",
+                            "Password":"",
+                            "PolicyAccepted":true,
+                            "Productes":[
+                                {
+                                    "Name":"Product1",
+                                    "Value":23.40,
+                                    "Img":"https://images-na.ssl-images-amazon.com/images/I/71W6TP3k2DL._SY355_.jpg",
+                                    "hasStock":true,
+                                    "ProductId":1
+                                },{
+                                    "Name":"Product2",
+                                    "Value":1.40,
+                                    "Img":"https://d3295hraz5fimx.cloudfront.net/c/25-home_default/buzos-camisetas-poleras-de-ninos.jpg",
+                                    "hasStock":false,
+                                    "ProductId":2
+                                },{
+                                    "Name":"Product3",
+                                    "Value":11.99,
+                                    "Img":"https://images.mobilefun.co.uk/graphics/450pixelp/50050.jpg",
+                                    "hasStock":true,
+                                    "ProductId":3
+                                }
+                            ],
+                            "Provincia":"Madrid",
+                            "Webpage":"www.prova.es",
+                            "Phone":931322312,
+                            "Description":"Fnac es una empresa francesa especializada en la venta de artículos electrónicos, ordenadores, artículos fotográficos, libros, música y vídeo. Ofrece también ventas por Internet y es uno de los grupos pioneros en este formato en su país de origen.",
+                            "Subcategories":[],
+                            "Type":"SHOP"
+                        },
+                        "Categories":[],
+                        "CreationDate":"08/10/2018",
+                        "Description":"Por liquidación de estoc, todos los productos con un gran descuento para todos.",
+                        "ExpirationDate":"17/07/2018",
+                        "Following":false,
+                        "OfferID":0,
+                        "OfferScope":"OPENED",
+                        "OfferType":"GLOBAL_DISCOUNT",
+                        "ProductsID":[1,2,3],
+                        "Src":"https://marketing4ecommerce.net/wp-content/uploads/2016/08/pccomponentes-cambia-imagen-759x500.jpg",
+                        "Subcategories":[],
+                        "ValidSinceDate":"10/07/2018",
+                        "maxPercentageOffer":70.0,
+                        "minPercentageOffer":40.0
+            }]
+            }
+        }
+        
+
+## OFERTES ESTABLIMENT [/business/{idBusiness}/offers?type={type}&token={token}&idSale={idSale}]
+
+Crida per obtenir les ofertes que es troben actualment disponibles per l'usuari d'un establiment
+en concret i per realitzar la gestió de les ofertes d'un establiment. 
+    
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que fa la petició.
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+    + token (string) - Credencials d'usuari
+    + idBusiness (int) - ID de l'establiment a consultar
+    + idSale (int,optional) - ID de l'oferta a consultar/eliminar
+
+
+### Obtenció d'ofertes establiment[GET]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Result ok!",
+            "ErrorCode": 0,
+            "Entity": {
+                "Sales":[
+                    {},
+                    {},
+                    {}
+                ]
+            }
+        }
+
+### Eliminació d'ofertes[DELETE]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Result ok!",
+            "ErrorCode": 0,
+            "Entity": {}
+        }
+        
+### Creació d'ofertes [POST]
+
++ Request (application/json) 
+
+        {
+            "Offer":{}
+        }
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Result ok!",
+            "ErrorCode": 0,
+            "Entity": {}
+        }
+
+### Modificació d'ofertes[PUT]
+
++ Request (application/json) 
+
+        {
+            "Offer":{}
+        }
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Result ok!",
+            "ErrorCode": 0,
+            "Entity": {}
+        }
+
+
+
+## REGISTRE DE COMPRES [/sales?type={type}&token={token}]
+
+Permetrà registrar compres realitzades en un establiment, especificant els productes que s'han comprat, la quantitat,
+el preu i altres elements necessàris. També permetrà actualitzar les dades d'una compra que no estava associada a cap usuari a
+partir del registre manual d'un ticket amb l'aplicació mòbil.
+
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que fa el registre.
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+    + token (string) - Credencials d'usuari
+
+### Registre compra en establiment[POST]
+
++ Request (application/json) 
+
+        {
+            "Purchase":{
+                "BusinessID":12123,
+                "PurchaseDate":"19/06/2018",
+                "Products":[
+                    {
+                        "ProductID": 12312,
+                        "Quantity":2
+                    }],
+                "TotalValue":1231.32,
+                "UserID":123123
+            }
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Purchase record completed",
+            "ErrorCode":0,
+            "Entity": { 
+                "PurchaseID":213123
+            }
+        }
+
+### Registre compra manual[PUT]
+
++ Request (application/json) 
+
+        {
+            "Purchase":{
+                "PurchaseID":1231,
+                "UserID":12512,
+                "Image":[],
+                "TotalValue":1231.42,
+                "PurchaseDate":"15/2/2019"
+            }
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Record update OK!",
+            "ErrorCode":0,
+            "Entity": { }
+        }
+        
+## OFERTES SEGUIDES [/offers/followed?type={type}&token={token}&start={start}&number={number}]
+
+Permetrà marcar ofertes com a "seguides" o "preferides" i desmacar-les. 
+A més a més, també permetrà l'obtenció d'aquestes ofertes per tal de poder-les
+visualitzar per part d'un usuari client. #### PER IMPLEMENTAR, NOMES DOCUMENTADA ####
+
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que fa la petició. Sempre serà 1 en aquesta petició. 
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+    + token (string) - Credencials d'usuari
+    + start (int) - Offset de les ofertes a obtenir
+    + number (int) - Nombre màxim d'ofertes a obtenir
+    
+
+### Obtenir preferits[GET]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Favorite checked!",
+            "ErrorCode":0,
+            "Entity": {
+                "Count": 150,
+                "Offers":[]
+            }
+        }
+        
+### Afegir a preferits[POST]
+
++ Request (application/json) 
+
+        {
+            "BusinessID":23142
+            "OfferID":12313
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Favorite checked!",
+            "ErrorCode":0,
+            "Entity": { }
+        }
+
+### Eliminar de preferits[DELETE]
+
++ Request (application/json) 
+
+        {
+            "BusinessID":23142
+            "OfferID":12313
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Favorite unchecked!",
+            "ErrorCode":0,
+            "Entity": { }
+        }
+
+        
+## ATENCIÓ AL CLIENT [/support?type={type}&token={token}]
+
+Permet enviar un missatge a atenció al client des de l'aplicació un cop l'usuari està autentificat.  
+<br> <b> GET Desenvolupat: </b> NO
+<br> <b> GET Testejat: </b> NO
+<br> <b> POST: </b> Només documentat, no cal desenvolupar encara
+<br> <b> PUT: </b> Només documentat, no cal desenvolupar encara
+
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que fa la petició. 
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+    + token (string) - Credencials d'usuari
+
+### ENVIAR A ATENCIÓ AL CLIENT[POST]
+
++ Request (application/json) 
+
+        {
+            "Message":"dasdasdaodakndaksdnaskdnaksdnaksdnaskndasdad",
+            "Topic":"asdasdoasdmaosd",
+            "Category": 1
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Message sent!",
+            "ErrorCode":0,
+            "Entity": { }
+        }
+        
+## ESTABLIMENTS USUARI [/followedBusiness?type={type}&token={token}&businessId={businessId}]
+
+Permetrà obtenir els establiments als que està "suscrit" un usuari i afegir/eliminar suscripcions. 
+<br> <b> GET Desenvolupat: </b> NO
+<br> <b> GET Testejat: </b> NO
+<br> <b> POST: </b> Només documentat, no cal desenvolupar encara
+<br> <b> PUT: </b> Només documentat, no cal desenvolupar encara
+
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que fa la consulta. Sempre serà 1 en aquesta petició. 
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+    + token (string) - Credencials d'usuari client
+    + businessId (int,optional) - Identificador de l'establiment al que es vol suscriure / cancelar suscripció.
+
+    
+### OBTENIR ESTABLIMENTS ASSOCIATS[GET]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Request OK",
+            "ErrorCode":0,
+            "Entity": {
+                "BusinessData":[
+                    {"ActivationCode":"","BusinessID":1,"CIF":"","CP":0,"Categories":[],"Comunitat":"Catalunya","CreationDate":"01/01/1900","Direccio":"Ctra Barcelona, 231","Email":"","Horari":{"mondayToFriday":[{"end":"20/07/2018","start":"20/07/2018"}],"saturday":[],"sunday":[]},"IsActive":true,"Municipi":"Girona","Name":"MediaMarkt","Password":"","PolicyAccepted":true,"Productes":[],"Provincia":"Girona","Subcategories":[],"Type":"SHOP"},
+                    {"ActivationCode":"","BusinessID":2,"CIF":"","CP":0,"Categories":[],"Comunitat":"Catalunya","CreationDate":"01/01/1900","Direccio":"Av. Diagonal, 569","Email":"","Horari":{"mondayToFriday":[{"end":"20/07/2018","start":"20/07/2018"}],"saturday":[],"sunday":[]},"IsActive":true,"Municipi":"Barcelona","Name":"FNAC","Password":"","PolicyAccepted":true,"Productes":[],"Provincia":"Barcelona","Subcategories":[],"Type":"SHOP"}
+                ]
+            }
+        }
+        
+### ASSOCIAR ESTABLIMENT[POST]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Business added.",
+            "ErrorCode":0,
+            "Entity": { 
+                "Business":{
+                }
+            }
+        }
+        
+### ELIMINAR ASSOCIACIO ESTABLIMENT[DELETE]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Business removed.",
+            "ErrorCode":0,
+            "Entity": { }
+        }
+        
+## DESCOMPTES PER FIDELITZACIÓ [/fidelizationDiscounts?type={type}&token={token}&year={year}&month={month}&businessId={businessId}&minAmount={minAmount}&onlyActive={onlyActive}]
+
+Permetrà obtenir els descomptes per fidelització d'un usuari. Només executable des del client mòbil. 
+
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que fa la consulta. Sempre serà 1 en aquesta petició. 
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+    + token (string) - Credencials d'usuari client
+    + year (int,optional) - Any de caducitat del descompte. Per filtratge.
+    + month (int,optional) - Més de caducitat del descompte. Per filtratge.
+    + businessId (int,optional) - Id de l'establiment, amb la finalitat de filtrar el resultat.
+    + minAmount (double,optional) - Valor mínim de descompte a mostrar.
+    + onlyActive (bool,optional) - Obtenir només actives i sense utilitzar. 
+
+
+### OBTENIR DADES DESCOMPTES[GET]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Request OK",
+            "ErrorCode":0,
+            "Entity": {
+                "Count":3,
+                "Discounts":[
+                    {
+                        "lastPurchase":"15/07/2018",
+                        "businessData":{
+                            "ActivationCode":"",
+                            "BusinessID":3,
+                            "CIF":"",
+                            "CP":0,
+                            "Categories":[],
+                            "Comunitat":"Madrid",
+                            "CreationDate":"01/01/1900",
+                            "Direccio":"c/Guardia Civil, 2",
+                            "Email":"",
+                            "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"},{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[{"end":"21/07/2018","start":"21/07/2018"}],"sunday":[]},
+                            "IsActive":true,
+                            "Municipi":"Madrid",
+                            "Name":"PcComponentes S.A.",
+                            "Password":"",
+                            "PolicyAccepted":true,
+                            "Productes":[],
+                            "Provincia":"Madrid",
+                            "Subcategories":[],
+                            "Type":"SHOP"
+                        },
+                        "discount":5.23,
+                        "expirationDate":"31/12/2018",
+                        "purchases":[],
+                        "idDiscount":1,
+                        "used":false
+                    },
+                    {
+                        "lastPurchase":"17/07/2018",
+                        "businessData":{
+                            "ActivationCode":"",
+                            "BusinessID":3,
+                            "CIF":"",
+                            "CP":0,
+                            "Categories":[],
+                            "Comunitat":"Madrid",
+                            "CreationDate":"01/01/1900",
+                            "Direccio":"c/Guardia Civil, 2",
+                            "Email":"",
+                            "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"},{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[{"end":"21/07/2018","start":"21/07/2018"}],"sunday":[]},
+                            "IsActive":true,
+                            "Municipi":"Madrid",
+                            "Name":"PcComponentes S.A.",
+                            "Password":"",
+                            "PolicyAccepted":true,
+                            "Productes":[],
+                            "Provincia":"Madrid",
+                            "Subcategories":[],
+                            "Type":"SHOP"
+                        },
+                        "discount":0.23,
+                        "expirationDate":"31/12/2019",
+                        "purchases":[],
+                        "idDiscount":2,
+                        "used":true
+                    },
+                    {
+                        "lastPurchase":"15/06/2018",
+                        "businessData":{
+                            "ActivationCode":"",
+                            "BusinessID":3,
+                            "CIF":"",
+                            "CP":0,
+                            "Categories":[],
+                            "Comunitat":"Madrid",
+                            "CreationDate":"01/01/1900",
+                            "Direccio":"c/Guardia Civil, 2",
+                            "Email":"",
+                            "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"},{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[{"end":"21/07/2018","start":"21/07/2018"}],"sunday":[]},
+                            "IsActive":true,
+                            "Municipi":"Madrid",
+                            "Name":"PcComponentes S.A.",
+                            "Password":"",
+                            "PolicyAccepted":true,
+                            "Productes":[],
+                            "Provincia":"Madrid",
+                            "Subcategories":[],
+                            "Type":"SHOP"
+                        },
+                        "discount":8.99,
+                        "expirationDate":"31/12/2018",
+                        "purchases":[
+                            {
+                                "purchaseID":1,
+                                "ticketImg":[],
+                                "purchaseValue":431,
+                                "purchaseDate":"15/08/2018",
+                                "businessData":{
+                                    "ActivationCode":"",
+                                    "BusinessID":3,
+                                    "CIF":"",
+                                    "CP":0,
+                                    "Categories":[],
+                                    "Comunitat":"Madrid",
+                                    "CreationDate":"01/01/1900",
+                                    "Direccio":"c/Guardia Civil, 2",
+                                    "Email":"",
+                                    "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"},{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[{"end":"21/07/2018","start":"21/07/2018"}],"sunday":[]},
+                                    "IsActive":true,
+                                    "Municipi":"Madrid",
+                                    "Name":"PcComponentes S.A.",
+                                    "Password":"",
+                                    "PolicyAccepted":true,
+                                    "Productes":[],
+                                    "Provincia":"Madrid",
+                                    "Subcategories":[],
+                                    "Type":"SHOP"
+                                },
+                                "products":[
+                                    {
+                                        "count":2,
+                                        "product":{
+                                            "Name":"Product1",
+                                            "Value":23.40,
+                                            "Img":"https://images-na.ssl-images-amazon.com/images/I/71W6TP3k2DL._SY355_.jpg",
+                                            "hasStock":true,
+                                            "ProductId":1
+                                        }
+                                    },
+                                    {
+                                        "count":2,
+                                        "product":{
+                                            "Name":"Product2",
+                                            "Value":1.40,
+                                            "Img":"https://d3295hraz5fimx.cloudfront.net/c/25-home_default/buzos-camisetas-poleras-de-ninos.jpg",
+                                            "hasStock":false,
+                                            "ProductId":2
+                                        }
+                                    },
+                                    {
+                                        "count":2,
+                                        "product":{
+                                            "Name":"Product3",
+                                            "Value":11.99,
+                                            "Img":"https://images.mobilefun.co.uk/graphics/450pixelp/50050.jpg",
+                                            "hasStock":true,
+                                            "ProductId":3
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "purchaseID":2,
+                                "ticketImg":[],
+                                "purchaseValue":35.95,
+                                "purchaseDate":"17/08/2018",
+                                "businessData":{
+                                    "ActivationCode":"",
+                                    "BusinessID":3,
+                                    "CIF":"",
+                                    "CP":0,
+                                    "Categories":[],
+                                    "Comunitat":"Madrid",
+                                    "CreationDate":"01/01/1900",
+                                    "Direccio":"c/Guardia Civil, 2",
+                                    "Email":"",
+                                    "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"},{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[{"end":"21/07/2018","start":"21/07/2018"}],"sunday":[]},
+                                    "IsActive":true,
+                                    "Municipi":"Madrid",
+                                    "Name":"PcComponentes S.A.",
+                                    "Password":"",
+                                    "PolicyAccepted":true,
+                                    "Productes":[],
+                                    "Provincia":"Madrid",
+                                    "Subcategories":[],
+                                    "Type":"SHOP"
+                                },
+                                "products":[
+                                    {
+                                        "count":2,
+                                        "product":{
+                                            "Name":"Product1",
+                                            "Value":23.40,
+                                            "Img":"https://images-na.ssl-images-amazon.com/images/I/71W6TP3k2DL._SY355_.jpg",
+                                            "hasStock":true,
+                                            "ProductId":1
+                                        }
+                                    },
+                                    {
+                                        "count":2,
+                                        "product":{
+                                            "Name":"Product2",
+                                            "Value":1.40,
+                                            "Img":"https://d3295hraz5fimx.cloudfront.net/c/25-home_default/buzos-camisetas-poleras-de-ninos.jpg",
+                                            "hasStock":false,
+                                            "ProductId":2
+                                        }
+                                    },
+                                    {
+                                        "count":2,
+                                        "product":{
+                                            "Name":"Product3",
+                                            "Value":11.99,
+                                            "Img":"https://images.mobilefun.co.uk/graphics/450pixelp/50050.jpg",
+                                            "hasStock":true,
+                                            "ProductId":3
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "purchaseID":3,
+                                "ticketImg":[],
+                                "purchaseValue":55.34,
+                                "purchaseDate":"15/08/2018",
+                                "businessData":{
+                                    "ActivationCode":"",
+                                    "BusinessID":3,
+                                    "CIF":"",
+                                    "CP":0,
+                                    "Categories":[],
+                                    "Comunitat":"Madrid",
+                                    "CreationDate":"01/01/1900",
+                                    "Direccio":"c/Guardia Civil, 2",
+                                    "Email":"",
+                                    "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"},{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[{"end":"21/07/2018","start":"21/07/2018"}],"sunday":[]},
+                                    "IsActive":true,
+                                    "Municipi":"Madrid",
+                                    "Name":"PcComponentes S.A.",
+                                    "Password":"",
+                                    "PolicyAccepted":true,
+                                    "Productes":[],
+                                    "Provincia":"Madrid",
+                                    "Subcategories":[],
+                                    "Type":"SHOP"
+                                },
+                                "products":[
+                                    {
+                                        "count":2,
+                                        "product":{
+                                            "Name":"Product1",
+                                            "Value":23.40,
+                                            "Img":"https://images-na.ssl-images-amazon.com/images/I/71W6TP3k2DL._SY355_.jpg",
+                                            "hasStock":true,
+                                            "ProductId":1
+                                        }
+                                    },
+                                    {
+                                        "count":2,
+                                        "product":{
+                                            "Name":"Product2",
+                                            "Value":1.40,
+                                            "Img":"https://d3295hraz5fimx.cloudfront.net/c/25-home_default/buzos-camisetas-poleras-de-ninos.jpg",
+                                            "hasStock":false,
+                                            "ProductId":2
+                                        }
+                                    },
+                                    {
+                                        "count":2,
+                                        "product":{
+                                            "Name":"Product3",
+                                            "Value":11.99,
+                                            "Img":"https://images.mobilefun.co.uk/graphics/450pixelp/50050.jpg",
+                                            "hasStock":true,
+                                            "ProductId":3
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "purchaseID":3,
+                                "ticketImg":[],
+                                "purchaseValue":55.34,
+                                "purchaseDate":"15/08/2018",
+                                "businessData":{
+                                    "ActivationCode":"",
+                                    "BusinessID":3,
+                                    "CIF":"",
+                                    "CP":0,
+                                    "Categories":[],
+                                    "Comunitat":"Madrid",
+                                    "CreationDate":"01/01/1900",
+                                    "Direccio":"c/Guardia Civil, 2",
+                                    "Email":"",
+                                    "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"},{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[{"end":"21/07/2018","start":"21/07/2018"}],"sunday":[]},
+                                    "IsActive":true,
+                                    "Municipi":"Madrid",
+                                    "Name":"PcComponentes S.A.",
+                                    "Password":"",
+                                    "PolicyAccepted":true,
+                                    "Productes":[],
+                                    "Provincia":"Madrid",
+                                    "Subcategories":[],
+                                    "Type":"SHOP"
+                                },
+                                "products":[
+                                    {
+                                        "count":2,
+                                        "product":{
+                                            "Name":"Product1",
+                                            "Value":23.40,
+                                            "Img":"https://images-na.ssl-images-amazon.com/images/I/71W6TP3k2DL._SY355_.jpg",
+                                            "hasStock":true,
+                                            "ProductId":1
+                                        }
+                                    },
+                                    {
+                                        "count":2,
+                                        "product":{
+                                            "Name":"Product2",
+                                            "Value":1.40,
+                                            "Img":"https://d3295hraz5fimx.cloudfront.net/c/25-home_default/buzos-camisetas-poleras-de-ninos.jpg",
+                                            "hasStock":false,
+                                            "ProductId":2
+                                        }
+                                    },
+                                    {
+                                        "count":2,
+                                        "product":{
+                                            "Name":"Product3",
+                                            "Value":11.99,
+                                            "Img":"https://images.mobilefun.co.uk/graphics/450pixelp/50050.jpg",
+                                            "hasStock":true,
+                                            "ProductId":3
+                                        }
+                                    }
+                                ]
+                            }
+                        ],
+                        "idDiscount":3,
+                        "used":false
+                    }
+                ]
+            }
+        }
+        
+## COMPRES [/purchases?type={type}&token={token}&year={year}&month={month}&businessId={businessId}&minAmount={minAmount}&maxAmount={maxAmount}]
+
+Permetrà obtenir les compres d'un usuari. Només executable des del client mòbil. 
+<br> <b> GET Desenvolupat: </b> SI
+<br> <b> GET Testejat: </b> SI
+
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que fa la consulta. Sempre serà 1 en aquesta petició. 
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+    + token (string) - Credencials d'usuari client
+    + year (int) - Any de la compra amb la finalitat de filtrar el resultat
+    + month (int) - Mes de compra amb la finalitat de filtrar el resultat
+    + businessId (int) - Id de l'establiment, amb la finalitat de filtrar el resultat.
+    + minAmount (double) - Valor mínim de la compra, amb la finalitat de filtrar el resultat
+    + maxAmount (double) - Valor màxim de la compra, amb la finalitat de filtrar el resultat
+
+
+### OBTENIR DADES COMPRES[GET]
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Request OK",
+            "ErrorCode":0,
+            "Entity": {
+                "Count":3,
+                "Purchases":[
+                    {
+                        "purchaseID":1,
+                        "ticketImg":[],
+                        "purchaseValue":431,
+                        "purchaseDate":"15/08/2018",
+                        "businessData":{
+                            "ActivationCode":"",
+                            "BusinessID":3,
+                            "CIF":"",
+                            "CP":0,
+                            "Categories":[],
+                            "Comunitat":"Madrid",
+                            "CreationDate":"01/01/1900",
+                            "Direccio":"c/Guardia Civil, 2",
+                            "Email":"",
+                            "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"},{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[{"end":"21/07/2018","start":"21/07/2018"}],"sunday":[]},
+                            "IsActive":true,
+                            "Municipi":"Madrid",
+                            "Name":"PcComponentes S.A.",
+                            "Password":"",
+                            "PolicyAccepted":true,
+                            "Productes":[],
+                            "Provincia":"Madrid",
+                            "Subcategories":[],
+                            "Type":"SHOP"
+                        },
+                        "products":[
+                            {
+                                "count":2,
+                                "product":{
+                                    "Name":"Product1",
+                                    "Value":23.40,
+                                    "Img":"https://images-na.ssl-images-amazon.com/images/I/71W6TP3k2DL._SY355_.jpg",
+                                    "hasStock":true,
+                                    "ProductId":1
+                                }
+                            },
+                            {
+                                "count":2,
+                                "product":{
+                                    "Name":"Product2",
+                                    "Value":1.40,
+                                    "Img":"https://d3295hraz5fimx.cloudfront.net/c/25-home_default/buzos-camisetas-poleras-de-ninos.jpg",
+                                    "hasStock":false,
+                                    "ProductId":2
+                                }
+                            },
+                            {
+                                "count":2,
+                                "product":{
+                                    "Name":"Product3",
+                                    "Value":11.99,
+                                    "Img":"https://images.mobilefun.co.uk/graphics/450pixelp/50050.jpg",
+                                    "hasStock":true,
+                                    "ProductId":3
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "purchaseID":2,
+                        "ticketImg":[],
+                        "purchaseValue":35.95,
+                        "purchaseDate":"17/08/2018",
+                        "businessData":{
+                            "ActivationCode":"",
+                            "BusinessID":3,
+                            "CIF":"",
+                            "CP":0,
+                            "Categories":[],
+                            "Comunitat":"Madrid",
+                            "CreationDate":"01/01/1900",
+                            "Direccio":"c/Guardia Civil, 2",
+                            "Email":"",
+                            "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"},{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[{"end":"21/07/2018","start":"21/07/2018"}],"sunday":[]},
+                            "IsActive":true,
+                            "Municipi":"Madrid",
+                            "Name":"PcComponentes S.A.",
+                            "Password":"",
+                            "PolicyAccepted":true,
+                            "Productes":[],
+                            "Provincia":"Madrid",
+                            "Subcategories":[],
+                            "Type":"SHOP"
+                        },
+                        "products":[
+                            {
+                                "count":2,
+                                "product":{
+                                    "Name":"Product1",
+                                    "Value":23.40,
+                                    "Img":"https://images-na.ssl-images-amazon.com/images/I/71W6TP3k2DL._SY355_.jpg",
+                                    "hasStock":true,
+                                    "ProductId":1
+                                }
+                            },
+                            {
+                                "count":2,
+                                "product":{
+                                    "Name":"Product2",
+                                    "Value":1.40,
+                                    "Img":"https://d3295hraz5fimx.cloudfront.net/c/25-home_default/buzos-camisetas-poleras-de-ninos.jpg",
+                                    "hasStock":false,
+                                    "ProductId":2
+                                }
+                            },
+                            {
+                                "count":2,
+                                "product":{
+                                    "Name":"Product3",
+                                    "Value":11.99,
+                                    "Img":"https://images.mobilefun.co.uk/graphics/450pixelp/50050.jpg",
+                                    "hasStock":true,
+                                    "ProductId":3
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "purchaseID":3,
+                        "ticketImg":[],
+                        "purchaseValue":55.34,
+                        "purchaseDate":"15/08/2018",
+                        "businessData":{
+                            "ActivationCode":"",
+                            "BusinessID":3,
+                            "CIF":"",
+                            "CP":0,
+                            "Categories":[],
+                            "Comunitat":"Madrid",
+                            "CreationDate":"01/01/1900",
+                            "Direccio":"c/Guardia Civil, 2",
+                            "Email":"",
+                            "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"},{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[{"end":"21/07/2018","start":"21/07/2018"}],"sunday":[]},
+                            "IsActive":true,
+                            "Municipi":"Madrid",
+                            "Name":"PcComponentes S.A.",
+                            "Password":"",
+                            "PolicyAccepted":true,
+                            "Productes":[],
+                            "Provincia":"Madrid",
+                            "Subcategories":[],
+                            "Type":"SHOP"
+                        },
+                        "products":[
+                            {
+                                "count":2,
+                                "product":{
+                                    "Name":"Product1",
+                                    "Value":23.40,
+                                    "Img":"https://images-na.ssl-images-amazon.com/images/I/71W6TP3k2DL._SY355_.jpg",
+                                    "hasStock":true,
+                                    "ProductId":1
+                                }
+                            },
+                            {
+                                "count":2,
+                                "product":{
+                                    "Name":"Product2",
+                                    "Value":1.40,
+                                    "Img":"https://d3295hraz5fimx.cloudfront.net/c/25-home_default/buzos-camisetas-poleras-de-ninos.jpg",
+                                    "hasStock":false,
+                                    "ProductId":2
+                                }
+                            },
+                            {
+                                "count":2,
+                                "product":{
+                                    "Name":"Product3",
+                                    "Value":11.99,
+                                    "Img":"https://images.mobilefun.co.uk/graphics/450pixelp/50050.jpg",
+                                    "hasStock":true,
+                                    "ProductId":3
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "purchaseID":4,
+                        "ticketImg":[],
+                        "purchaseValue":55.34,
+                        "purchaseDate":"15/08/2018",
+                        "businessData":{
+                            "ActivationCode":"",
+                            "BusinessID":3,
+                            "CIF":"",
+                            "CP":0,
+                            "Categories":[],
+                            "Comunitat":"Madrid",
+                            "CreationDate":"01/01/1900",
+                            "Direccio":"c/Guardia Civil, 2",
+                            "Email":"",
+                            "Horari":{"mondayToFriday":[{"end":"21/07/2018","start":"21/07/2018"},{"end":"21/07/2018","start":"21/07/2018"}],"saturday":[{"end":"21/07/2018","start":"21/07/2018"}],"sunday":[]},
+                            "IsActive":true,
+                            "Municipi":"Madrid",
+                            "Name":"PcComponentes S.A.",
+                            "Password":"",
+                            "PolicyAccepted":true,
+                            "Productes":[],
+                            "Provincia":"Madrid",
+                            "Subcategories":[],
+                            "Type":"SHOP"
+                        },
+                        "products":[
+                            {
+                                "count":2,
+                                "product":{
+                                    "Name":"Product1",
+                                    "Value":23.40,
+                                    "Img":"https://images-na.ssl-images-amazon.com/images/I/71W6TP3k2DL._SY355_.jpg",
+                                    "hasStock":true,
+                                    "ProductId":1
+                                }
+                            },
+                            {
+                                "count":2,
+                                "product":{
+                                    "Name":"Product2",
+                                    "Value":1.40,
+                                    "Img":"https://d3295hraz5fimx.cloudfront.net/c/25-home_default/buzos-camisetas-poleras-de-ninos.jpg",
+                                    "hasStock":false,
+                                    "ProductId":2
+                                }
+                            },
+                            {
+                                "count":2,
+                                "product":{
+                                    "Name":"Product3",
+                                    "Value":11.99,
+                                    "Img":"https://images.mobilefun.co.uk/graphics/450pixelp/50050.jpg",
+                                    "hasStock":true,
+                                    "ProductId":3
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+
+
+## PAISOS [/countries?type={type}]
+
+Permetrà obtenir tots els països i les seves corresponents provincies on es podrà registrar un usuari.
+<br> <b> GET Desenvolupat: </b> SI
+<br> <b> GET Testejat: </b> SI
+    
+### OBTENIR DADES PAISOS[GET]
+
++ Parameters
+    + type (enum[int]) - Tipus d'usuari que fa la consulta. Sempre serà 1 en aquesta petició. 
+        + Members
+            + 1 - Mobil
+            + 2 - Web
+
++ Response 200 (application/json)
+
+        {
+            "ResultOK": true,
+            "Message": "Request OK",
+            "ErrorCode":0,
+            "Entity": {
+                "Countries": [
+                    {
+                        "Name":"España",
+                        "Id":1,
+                        "Prefix":34,
+                        "Provincies":[
+                            {
+                                "Name":"A Coruña",
+                                "id":1
+                            },
+                            {
+                                "Name":"Alava",
+                                "id":2
+                            },
+                            {
+                                "Name":"Albacete",
+                                "id":3
+                            },
+                            {
+                                "Name":"Alicante",
+                                "id":4
+                            },
+                            {
+                                "Name":"Almeria",
+                                "id":5
+                            },
+                            {
+                                "Name":"Asturias",
+                                "id":6
+                            },
+                            {
+                                "Name":"Avila",
+                                "id":7
+                            },
+                            {
+                                "Name":"Badajoz",
+                                "id":8
+                            },
+                            {
+                                "Name":"Baleares",
+                                "id":9
+                            },
+                            {
+                                "Name":"Barcelona",
+                                "id":10
+                            },
+                            {
+                                "Name":"Burgos",
+                                "id":11
+                            },
+                            {
+                                "Name":"Caceres",
+                                "id":12
+                            },
+                            {
+                                "Name":"Cadiz",
+                                "id":13
+                            },
+                            {
+                                "Name":"Cantabria",
+                                "id":14
+                            },
+                            {
+                                "Name":"Castellon",
+                                "id":15
+                            },
+                            {
+                                "Name":"Ceuta",
+                                "id":16
+                            },
+                            {
+                                "Name":"Ciudad Real",
+                                "id":17
+                            },
+                            {
+                                "Name":"Cordoba",
+                                "id":18
+                            },
+                            {
+                                "Name":"Cuenca",
+                                "id":19
+                            },
+                            {
+                                "Name":"Girona",
+                                "id":20
+                            },
+                            {
+                                "Name":"Granada",
+                                "id":21
+                            },
+                            {
+                                "Name":"Guadalajara",
+                                "id":22
+                            },
+                            {
+                                "Name":"Guipuzcoa",
+                                "id":23
+                            },
+                            {
+                                "Name":"Huelva",
+                                "id":24
+                            },
+                            {
+                                "Name":"Huesca",
+                                "id":25
+                            },
+                            {
+                                "Name":"Jaen",
+                                "id":26
+                            },
+                            {
+                                "Name":"La Rioja",
+                                "id":27
+                            },
+                            {
+                                "Name":"Las Palmas",
+                                "id":28
+                            },
+                            {
+                                "Name":"Leon",
+                                "id":29
+                            },
+                            {
+                                "Name":"Lleida",
+                                "id":30
+                            },
+                            {
+                                "Name":"Lugo",
+                                "id":31
+                            },
+                            {
+                                "Name":"Madrid",
+                                "id":32
+                            },
+                            {
+                                "Name":"Malaga",
+                                "id":33
+                            },
+                            {
+                                "Name":"Melilla",
+                                "id":34
+                            },
+                            {
+                                "Name":"Murcia",
+                                "id":35
+                            },
+                            {
+                                "Name":"Navarra",
+                                "id":36
+                            },
+                            {
+                                "Name":"Ourense",
+                                "id":37
+                            },
+                            {
+                                "Name":"Palencia",
+                                "id":38
+                            },
+                            {
+                                "Name":"Pontevedra",
+                                "id":39
+                            },{
+                                "Name":"Salamanca",
+                                "id":40
+                            },{
+                                "Name":"Tenerife",
+                                "id":41
+                            },{
+                                "Name":"Segovia",
+                                "id":42
+                            },{
+                                "Name":"Sevilla",
+                                "id":43
+                            },
+                            {
+                                "Name":"Soria",
+                                "id":44
+                            },
+                            {
+                                "Name":"Tarragona",
+                                "id":45
+                            },
+                            {
+                                "Name":"Teruel",
+                                "id":46
+                            },
+                            {
+                                "Name":"Toledo",
+                                "id":47
+                            },
+                            {
+                                "Name":"Valencia",
+                                "id":48
+                            },
+                            {
+                                "Name":"Valladolid",
+                                "id":49
+                            },
+                            {
+                                "Name":"Vizcaya",
+                                "id":50
+                            },
+                            {
+                                "Name":"Zamora",
+                                "id":51
+                            },
+                            {
+                                "Name":"Zaragoza",
+                                "id":52
+                            }
+                        ]
+                    },
+                    {
+                        "Name":"Francia",
+                        "Id":2,
+                        "Prefix":33,
+                        "Provincias":[
+                        
+                        ]
+                    },
+                    {
+                        "Name":"Portugal",
+                        "Id":3,
+                        "Prefix":351,
+                        "Provincias":[
+                        
+                        ]
+                    }
+                ]
+            }
+        }

@@ -1,0 +1,20 @@
+<div id="accept_purchase_confirmation" class="modal">
+    <div id="accept_purchase_content" class="shadow dialog_container">
+        <div id="accept_purchase_header" class ="dialog_header">
+            <img class="dialogIcon" src="../images/ic_action_accept_white.svg"/>
+            <h3> {{accept_purchase}} </h3>
+        </div>
+        <div id="close_session_content" class ="dialog_content">
+            <p class="dialog_message"> {{dialog_message}} </p>
+        </div>
+        <div id ="close_session_footer">
+            {{#if showHorizontalRule }}
+                <div id ="hr_information" class="hr"></div>
+            {{/if}}
+            <div id="close_session_buttons" style="width:100%;margin-bottom: 25px;">
+                <button class="button_grey column_49" style="margin-right: 0.5%" onclick="$('#accept_purchase_confirmation').addClass('hidden').removeClass('visible')">{{cancel}}</button>
+                <button class="button_green column_49" style="margin-left: 0.5%" onclick="saveNewManualPurchase()">{{accept}}</button>
+            </div>
+        </div>
+    </div>
+</div>

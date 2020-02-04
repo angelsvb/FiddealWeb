@@ -1,0 +1,24 @@
+.cc-message, .cc-btn{
+    font-family: Montserrat, serif !important;
+}
+
+.cc-btn{
+    padding-left: 35px !important;
+    padding-right: 35px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-size: 1em !important;
+    color: white !important;
+    border-radius: 8px;
+    border-color: #4cae4c !important;
+    font-weight: 600 !important;
+}
+
+.cc-btn:hover{
+    background: white !important;
+    color: #4cae4c !important;
+}
+
+.cc-compliance a:hover{
+    text-decoration: none !important;
+}

@@ -1,0 +1,30 @@
+<div id="information" class="modal">
+    <div id="information_container" class="shadow dialog_container">
+        <div id="information_header" class ="dialog_header">
+            <img class="dialogIcon" src="../images/ic_information.svg"/>
+        </div>
+        <div id="information_content" class ="dialog_content">
+            <p class="dialog_title"> {{title}} </p>
+            <p class="dialog_message"> {{message}} </p>
+        </div>
+        <div id ="information_footer">
+            {{#if showHorizontalRule }}
+                <div id ="hr_information" class="hr"></div>
+            {{/if}}
+            <div id="information_buttons">
+                {{#if onBack}}
+                    <button class="button_blue dialog_button" {{{onBack}}}>{{back}}</button>
+                {{else}}
+                    <button class="button_blue dialog_button" onClick="$('#information').addClass('hidden').removeClass('visible')">{{back}}</button>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#information').click(function(event){
+            if (!$(event.target).closest(".dialog_container").length) {
+                $('#information').addClass('hidden').removeClass('visible')
+            }
+        })
+    </script>
+</div>

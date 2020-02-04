@@ -1,0 +1,92 @@
+<div id="content_container">
+    <div id="content">
+        <div id="column_buttons" class="shadow column_48">
+            <div>
+                <div>
+                    <p class="form_title light"> {{title}} </p>
+                    <div class="horizontal_rule"></div>
+                </div>
+            </div>
+            <form id="day_information" class="form-horizontal">
+                <div class="form-group row">
+                    <label for="salesNumber" class="col-sm-4 col-form-label align-self-center">{{number_purchases}}</label>
+                    <div class="col-sm-2">
+                        <input type="text" readonly class="form-control-plaintext" id="salesNumber" value="0" disabled>
+                    </div>
+                    <label for="fidelizationPercentage" class="col-sm-4 col-form-label align-self-center">{{fidelization_percentage}}</label>
+                    <div class="col-sm-2">
+                        <input type="text" readonly class="form-control-plaintext" id="fidelizationPercentage" value="00.00 %" disabled>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-bottom: 5%">
+                    <label for="averageTicket" class="col-sm-4 col-form-label align-self-center">{{average_ticket}}</label>
+                    <div class="col-sm-2">
+                        <input type="text" readonly class="form-control-plaintext" id="averageTicket" value="0.00 €"disabled>
+                    </div>
+                    <label for="totalValue" class="col-sm-4 col-form-label align-self-center">{{billed_amount}}</label>
+                    <div class="col-sm-2">
+                        <input type="text" readonly class="form-control-plaintext" id="totalValue" value="0.00 €" disabled>
+                    </div>
+                </div>
+                <input type="text" id="codebar" hidden>
+            </form>
+            <div>
+                <div>
+                    <p class="form_title light">{{actions_uppercase}}</p>
+                    <div class="horizontal_rule"></div>
+                </div>
+            </div>
+            <div id="action_buttons">
+                <div class="column_48" style="margin-left: 2%; margin-right: 0%">
+                    <div class="button_container"><button id="buttonInvoice" class="action_button button_green" onclick="getInvoice()" disabled>{{bill_ticket}}</button> </div>
+                    <div class="button_container"><button class="action_button button_blue" onclick="checkPrice()">{{check_price}}</button></div>
+                    <div class="button_container"><button class="action_button button_blue_dark" onclick="checkStock()">{{check_available}}</button></div>
+                    <div class="button_container"><button class="action_button button_blue_dark" disabled>{{change_products}}</button></div>
+                </div>
+                <div class="column_48" style="margin-left: 0%; margin-right: 2%">
+                    <div class="button_container"><button id="buttonCancel" class="action_button button_red" onclick="cancelTicket()" disabled>{{cancel_ticket}}</button> </div>
+                    <div class="button_container"><button class="action_button button_yellow" onclick="manualProductEntry()">{{manual_code}}</button></div>
+                    <div class="button_container"><button class="action_button button_yellow" disabled>{{return_product}}</button></div>
+                    <div class="button_container"><button class="action_button button_dark" disabled>{{close_day}}</button></div>
+                </div>
+            </div>
+        </div>
+        <div id="column_purchase" class="column_49 shadow">
+            <div>
+                <p class="form_title light">{{current_ticket}}</p>
+                <div class="horizontal_rule"></div>
+            </div>
+            <div id="grid_header">
+                <table class="grid">
+                    <tr class="grid_row grid_header">
+                        <th id="product_name" class="column_45">{{product}}</th>
+                        <th id="product_value" class="column_25 centered">{{original_price}}</th>
+                        <th id="product_realvalue" class="column_25 centered">{{applied_price}}</th>
+                        <th id="gap" class="column_5 centered"></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="horizontal_rule"></div>
+            <div class="spacer_10"></div>
+            <div id="grid_container">
+                <table id="purchases_grid" class="grid">
+                </table>
+            </div>
+            <div>
+                <form id="purchase_information" class="form-horizontal">
+                    <div class="form-group row">
+                        <div class="horizontal_rule"></div>
+                        <label for="info_number" class="col-sm-4 col-form-label align-self-center">{{number_products}}</label>
+                        <div class="col-sm-2">
+                            <input type="text" readonly class="form-control-plaintext" id="info_number" value="0" disabled>
+                        </div>
+                        <label for="info_subtotal" class="col-sm-4 col-form-label align-self-center">{{subtotal}}</label>
+                        <div class="col-sm-2">
+                            <input type="text" readonly class="form-control-plaintext" id="info_subtotal" value="0.00 €" disabled>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

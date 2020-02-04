@@ -1,0 +1,20 @@
+<div id="terms_conditions_modified" class="modal">
+    <div class="shadow dialog_container">
+        <div id="terms_conditions_header" class ="dialog_header">
+            <img class="dialogIcon" src="../images/ic_action_accept_white.svg"/>
+            <h3> {{dialog_title}} </h3>
+        </div>
+        <div class="dialog_content">
+            <p class="dialog_message">{{message_1}}<a href="../html/terminos_condiciones.html">{{message_2}}</a>{{message_3}}<a href="../html/politica_privacidad.html">{{message_4}}</a>{{message_5}}</p>
+        </div>
+        <div>
+            {{#if showHorizontalRule }}
+                <div id ="hr_information" class="hr"></div>
+            {{/if}}
+            <div id="close_session_buttons" style="width:100%;margin-bottom: 25px;">
+                <button class="button_grey column_49" style="margin-right: 0.5%;" onClick="performCloseSession()">{{cancel}}</button>
+                <button class="button_blue column_49" style="margin-left: 0.5%" onClick="acceptPolicy()">{{accept}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div id="warning" class="modal hidden">
+    <div id="warning_container" class="shadow dialog_container">
+        <div id="warning_header" class ="dialog_header">
+            <img class="dialogIcon" src="../images/ic_information.svg"/>
+        </div>
+        <div id="warning_content" class ="dialog_content">
+            <p class="dialog_title">{{title}}</p>
+            <p class="dialog_message">{{message}}</p>
+        </div>
+
+        <div id ="warning_footer">
+            {{#if showHorizontalRule }}
+                <div id="hr_warning" class = "hr"></div>
+            {{/if}}
+            <div id="warning_buttons">
+                {{#if onAccept}}
+                    <button class="button_red dialog_button" {{{onAccept}}}>{{accept}}</button>
+                {{else}}
+                    <button class="button_red dialog_button" onClick="$('#warning').addClass('hidden').removeClass('visible')">{{accept}}</button>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

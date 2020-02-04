@@ -1,0 +1,123 @@
+<div id="content_container">
+    <div id="content">
+        <table id="categories_grid" class="grid">
+            <thead>
+            <tr class="grid_row grid_header">
+                <th id="purchase_id" class="column_30">{{column_category}}</th>
+                <th id="purchase_date" class="column_25 centered">{{column_creation}}</th>
+                <th id="total" class="column_25 centered">{{column_modify}}</th>
+                <th id="id_customer" class="column_17 centered">{{column_subcategories_count}}</th>
+            </tr>
+            <tr class="grid_row">
+                <th class="horizontal_rule column_97"></th>
+            </tr>
+            <tr class="spacer_10"></tr>
+            </thead>
+            <tbody id="table_body">
+            </tbody>
+        </table>
+    </div>
+    <div id="category_detail" class="column_40 hidden">
+        <div id="container_detail">
+            <div class="detail_header clearfix">
+                <div class="detail_buttons_container clearfix">
+                    <p class="detail_title light">{{detail_title}}</p>
+                    <button class="button_detail last_action" onclick="hideDetail()">
+                        <div style="display:inline-flex">
+                            <p class="action_label">{{close}}</p>
+                            <img class="action_icon" src="../images/ic_close_dark.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button id="main_button"  class="button_detail" onClick="switchFloatingButtons()">
+                        <div>
+                            <p class="action_label">{{actions}}</p>
+                            <img class="action_icon" src="../images/ic_actions.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_first" onclick="newCategory()">
+                        <div>
+                            <p class="action_label">{{add}}</p>
+                            <img class="action_icon" src="../images/ic_action_new.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_second edit" onclick="startEditingCategory()">
+                        <div>
+                            <p class="action_label">{{edit}}</p>
+                            <img class="action_icon" src="../images/ic_action_edit.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_second confirm_edit hidden" onclick="saveEditedCategory()">
+                        <div>
+                            <p class="action_label">{{save}}</p>
+                            <img class="action_icon" src="../images/ic_action_save.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_third" onclick="deleteCategory()">
+                        <div>
+                            <p class="action_label">{{delete}}</p>
+                            <img class="action_icon" src="../images/ic_action_delete.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_third discard_edit hidden" onclick="discardEditedCategory()">
+                        <div>
+                            <p class="action_label">{{discard}}</p>
+                            <img class="action_icon" src="../images/ic_action_reject_red.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <hr class="horizontal_rule horizontal_rule_detail">
+
+            <div class="grid_item_detail">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputCategoryID">{{id}}</label>
+                        <input type="text" id="inputCategoryID" disabled>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputCategoryName">{{label_name}}</label>
+                        <input type="text" id="inputCategoryName">
+                        <div id="inputCategoryName_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}.</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCreationDate">{{creation_date}}</label>
+                        <input type="text" id="inputCreationDate" disabled>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputLastUpdate">{{update_date}}</label>
+                        <input type="text" id="inputLastUpdate" disabled>
+                    </div>
+                </div>
+
+                <div class="form-row" style="padding-top: 1%">
+                    <div class="grid_header">
+                        <p class="detail_subtitle">{{detail_subtitle}}</p>
+                        <img id="action_new_subcategory" src="../images/ic_action_new.svg" class="subcategory_icon" title="{{new_subcategory}}" onclick="newSubcategory()" alt="{{new_subcategory}}">
+                    </div>
+                    <hr class="horizontal_rule"/>
+                    <div class="form-group col-md-12">
+                        <table id="subcategories_grid" class="grid secondary_grid">
+                            <thead>
+                            <tr class="spacer_5"></tr>
+                            </thead>
+                            <tbody id="products_body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="empty_grid" class="empty_grid_container hidden shadow">
+        <p class="info_title"> {{attention}} </p>
+        <p class="info"> {{empty_grid_1}} </p>
+        <p>{{empty_grid_2}}</p>
+        <img id="create_first" src="../images/ic_action_new_dark.svg" class="image_action" title="{{new_category}}" onclick="newCategory()" alt="{{new_category}}">
+    </div>
+</div>

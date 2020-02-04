@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Fiddeal - Perfil </title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <script type='text/javascript' src="../javascripts/utilities/jquery-functions.js"></script>
+    <script type='text/javascript' src="../bundled/perfil.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
+    <link rel="stylesheet" href="../stylesheets/dialogs.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/perfil.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/style.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/fiddeal.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/header_and_footer.css" type="text/css">
+
+    <!-- COOKIES -->
+    <link rel="stylesheet" type="text/css" href="../stylesheets/cookies_custom.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- END COOKIES -->
+
+    <script> initializeBefore() </script>
+</head>
+<body onLoad="initializeAfter()">
+<div id="content_container">
+    <div id="content">
+        <div class="form-row">
+            <div id="header_profile">
+                <p class="form_title light column_80"> DATOS DE LA EMPRESA </p>
+                <div class="column_20" onclick="changeProfileInputStatus()">
+                    <img id="image_profile" src="../images/ic_action_edit.svg" width="36px" height="36px" class="form_action" style="margin-right: 0px"/>
+                </div>
+            </div>
+            <div class="horizontal_rule column_97"></div>
+        </div>
+
+        <div id="form_profile">
+            <div class="form-row" >
+                <div class="form-group col-md-4 align-self-center" style="padding-left:15px;padding-right:15px">
+                    <img src="../images/appicon_hd.png" width="100%" height="auto">
+                </div>
+                <div class="form-group col-md-8">
+                    <!--mail, nom empresa, cif empresa-->
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail">Correo electrónico*</label>
+                            <input type="email" id="inputEmail" placeholder="info@example.com">
+                            <div id="inputEmail_error" class="invalid-tooltip"> Campo obligatório </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputName">Nombre de la empresa*</label>
+                            <input type="text" class="editable" id="inputName" placeholder="Empresa S.A.">
+                            <div id="inputName_error" class="invalid-tooltip"> Campo obligatório </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputCIF">CIF*</label>
+                            <input type="text" id="inputCIF" placeholder="A12345678">
+                            <div id="inputCIF_error" class="invalid-tooltip"> Campo obligatório </div>
+                        </div>
+                    </div>
+
+                    <!--Pais, Provincia, Municipi, CP, Adreça-->
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inputState">País*</label>
+                            <select id="inputState" class="form-control selector editable">
+                                <option selected value="0">Seleccione una opción...</option>
+                            </select>
+                            <div id="inputState_error" class="invalid-tooltip"> Campo obligatório </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputProvincia">Província*</label>
+                            <select id="inputProvincia" class="form-control selector editable">
+                                <option selected value="0">Seleccione una opción...</option>
+                            </select>
+                            <div id="inputProvincia_error" class="invalid-tooltip"> Campo obligatório </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputMunicipi">Municipio*</label>
+                            <input type="text" id="inputMunicipi" placeholder="Salt" class="editable">
+                            <div id="inputMunicipi_error" class="invalid-tooltip"> Campo obligatório </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputAddress">Dirección*</label>
+                            <input type="text" id="inputAddress" placeholder="Ctra Barcelona S/N" class="editable">
+                            <div id="inputAddress_error" class="invalid-tooltip"> Campo obligatório </div>
+                        </div>
+                    </div>
+
+                    <!--contrasenya, repetir contrasenya-->
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inputCP">Código postal*</label>
+                            <input type="number" id="inputCP" placeholder="17002" class="form-control selector editable">
+                            <div id="inputCP_error" class="invalid-tooltip"> Campo obligatório </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputPhone">Teléfono</label>
+                            <input type="tel" id="inputPhone" placeholder="972001122" class="editable">
+                            <div id="inputPhone_error" class="invalid-tooltip"> Campo obligatório </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputWebPage">Página web</label>
+                            <input type="text" id="inputWebPage" placeholder="www.example.es" class="editable">
+                            <div id="inputWebPage_error" class="invalid-tooltip"> Campo obligatório </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputBusinessType">Tipo de empresa*</label>
+                            <select id="inputBusinessType" class="form-control selector editable">
+                            </select>
+                            <div id="inputBusinessType_error" class="invalid-tooltip"> Campo obligatório </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Descripcio -->
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputDescription">Descripción de la empresa*</label>
+                    <textarea class="editable" style="resize:none" maxlength="250" id="inputDescription" rows="3"> </textarea>
+                    <small id="textAreaHelp" class="form-text text-muted editable">Máximo 250 carácteres. Mínimo 30 carácteres.</small>
+                    <div id="inputDescription_error" class="invalid-tooltip"> Campo obligatório </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row" style="margin-top:55px;">
+            <div id="header_fidelization_params">
+                <p class="form_title light column_90"> PARÁMETROS DE FIDELIZACIÓN </p>
+                <div class="column_10" onclick="changeParamsInputStatus()">
+                    <img id="image_params" src="../images/ic_action_edit.svg" width="36px" height="36px" class="form_action" style="margin-right: 0px"/>
+                </div>
+            </div>
+            <div class="horizontal_rule column_97"></div>
+        </div>
+
+
+        <div class="form-row" id="form_params" style="margin-bottom: 35px">
+            <div class="form-group col-md-4">
+                <label for="inputEquivalence">Descuento acomulado por euro gastado (€) </label>
+                <input type="text" id="inputEquivalence" placeholder="0.05 €">
+                <div id="inputEquivalence_error" class="invalid-tooltip"> Campo obligatório </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputLifeTime">Caducidad del descuento (meses)</label>
+                <input type="number" id="inputLifeTime" placeholder="1 mes">
+                <div id="inputLifeTime_error" class="invalid-tooltip"> Campo obligatório </div>
+            </div>
+            <div class="form-group col-md-4" style="padding-left:40px">
+                <div class="custom-control form-control-lg custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="inputCaducidad" checked>
+                    <label class="custom-control-label" for="inputCaducidad">Descuentos con fecha de caducidad</label>
+                    <div id="inputCaducidad_error" class="invalid-tooltip"> Campo obligatório </div>
+                </div>
+                <div class="custom-control form-control-lg custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="inputAmpliar" checked>
+                    <label class="custom-control-label" for="inputAmpliar">Ampliar caducidad con cada compra</label>
+                    <div id="inputAmpliar_error" class="invalid-tooltip"> Campo obligatório </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

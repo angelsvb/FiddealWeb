@@ -1,0 +1,27 @@
+<div id="get_product_stock" class="modal">
+    <div id="addStockProduct_container" class="shadow dialog_container">
+        <div id="checkStockProduct_header" class ="dialog_header">
+            <img class ="dialogIcon" src="../images/ic_stock.svg"/>
+            <h3>{{dialog_title}}</h3>
+        </div>
+        <div id="addStockProduct_content" class ="dialog_content">
+            <form>
+                <div class="form-group col-md-12">
+                    <label for="inputCheckStock">{{product_code}}</label>
+                    <input type="text" class="form-control" id="inputCheckStock" aria-describedby="emailHelp" placeholder="123456789" required>
+                    <div id="inputCheckStock_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                </div>
+                <div class="form-group">
+                    <label for="stock_productName">{{product_name}}</label>
+                    <input type="text" class="form-control" id="stock_productName" aria-describedby="emailHelp" placeholder="{{product_name_placeholder}}" disabled style="margin-bottom: 5px">
+                    <label for="stock_productStockState">{{product_stock_state}}</label>
+                    <input type="text" class="form-control" id="stock_productStockState" aria-describedby="emailHelp" placeholder="" disabled style="margin-bottom: 5px">
+                    <label for="stock_productStock">{{product_stock}}</label>
+                    <input type="text" class="form-control" id="stock_productStock" aria-describedby="emailHelp" placeholder="0" disabled style="margin-bottom: 5px">
+                </div>
+            </form>
+            <button class ="button_blue_dark dialog_button full_width" onClick="checkProductStock()">{{label_check}}</button>
+            <button class="button_grey dialog_button full_width" onClick="$('#get_product_stock').addClass('hidden').removeClass('visible')">{{close}}</button>
+        </div>
+    </div>
+</div>

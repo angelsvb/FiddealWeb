@@ -1,0 +1,23 @@
+<div id="dialog_given_cash" class="modal">
+    <div id="manualProductEntry_container" class="shadow dialog_container">
+        <div id="manualProductEntry_header" class ="dialog_header" style="background-color: #388e3c">
+            <img class ="dialogIcon" src="../images/ic_cash_white.svg"/>
+            <h3>{{dialog_title}}</h3>
+        </div>
+        <div id="addStockProduct_content" class ="dialog_content">
+            <form>
+                <div class="form-group col-md-12">
+                    <label for="inputGivenCash">{{given}}</label>
+                    <input type="text" class="form-control" id="inputGivenCash">
+                    <div id="inputGivenCash_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                </div>
+                <div class="form-group">
+                    <label for="purchaseTotal">{{total_label}}</label>
+                    <input type="text" class="form-control" id="purchaseTotal" disabled style="margin-bottom: 5px" value="{{total}}">
+                </div>
+            </form>
+            <button id="userCard_continue" class ="button_green dialog_button full_width" onClick="finishCashInvoice()">{{accept}}</button>
+            <button class="button_grey dialog_button full_width" onclick="cancelInvoiceCash()">{{cancel}}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+start watchify .\public\javascripts\index.js -o .\public\bundled\index.js -v DONE
+start watchify .\public\javascripts\productes.js -o .\public\bundled\productes.js -v DONE
+start watchify .\public\javascripts\ofertes.js -o .\public\bundled\ofertes.js -v
+start watchify .\public\javascripts\compres.js -o .\public\bundled\compres.js -v
+start watchify .\public\javascripts\compres_manuals.js -o .\public\bundled\compres_manuals.js -v
+start watchify .\public\javascripts\perfil.js -o .\public\bundled\perfil.js -v DONE
+start watchify .\public\javascripts\initialize_horari.js -o .\public\bundled\initialize_horari.js -v DONE
+start watchify .\public\javascripts\horari.js -o .\public\bundled\horari.js -v DONE
+start watchify .\public\javascripts\facturacio.js -o .\public\bundled\facturacio.js -v DONE
+start watchify .\public\javascripts\categories.js -o .\public\bundled\categories.js -v DONE
+
+browserify --debug ./public/javascripts/index.js -o ./public/bundled/index.js -v
+browserify --debug ./public/javascripts/productes.js -o ./public/bundled/productes.js -v
+browserify --debug ./public/javascripts/ofertes.js -o ./public/bundled/ofertes.js -v
+browserify --debug ./public/javascripts/compres.js -o ./public/bundled/compres.js -v
+browserify --debug ./public/javascripts/compres_manuals.js -o ./public/bundled/compres_manuals.js -v
+browserify --debug ./public/javascripts/perfil.js -o ./public/bundled/perfil.js -v
+browserify --debug ./public/javascripts/horari.js -o ./public/bundled/horari.js -v
+browserify --debug ./public/javascripts/facturacio.js -o ./public/bundled/facturacio.js -v
+browserify --debug ./public/javascripts/categories.js -o ./public/bundled/categories.js -v
+
+browserify ./public/javascripts/index.js -o ./public/bundled/index.js -v
+browserify ./public/javascripts/productes.js -o ./public/bundled/productes.js -v
+browserify ./public/javascripts/ofertes.js -o ./public/bundled/ofertes.js -v
+browserify ./public/javascripts/compres.js -o ./public/bundled/compres.js -v
+browserify ./public/javascripts/compres_manuals.js -o ./public/bundled/compres_manuals.js -v
+browserify ./public/javascripts/perfil.js -o ./public/bundled/perfil.js -v
+browserify ./public/javascripts/horari.js -o ./public/bundled/horari.js -v
+browserify ./public/javascripts/facturacio.js -o ./public/bundled/facturacio.js -v
+browserify ./public/javascripts/categories.js -o ./public/bundled/categories.js -v

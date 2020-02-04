@@ -1,0 +1,23 @@
+<div id="activate_account" class="modal">
+    <div id="activateAcc_container" class="shadow dialog_container">
+        <div id="activateAcc_header" class ="dialog_header">
+            <img class="dialogIcon" src="../images/ic_activar.svg"/>
+            <h3>{{dialog_title}}</h3>
+        </div>
+        <div id="activateAcc_content" class ="dialog_content">
+            <form>
+                <div class="form-group col-md-12">
+                    <label class="labelForm" for="activation_code">{{label_activation_code}}</label>
+                    <input type="text" class="form-control" id="activation_code" aria-describedby="emailHelp" placeholder="{{label_activation_code}}" required>
+                    <div id="activation_code_error" class="invalid-tooltip">{{compulsory_field}}</div>
+                </div>
+            </form>
+            <button class ="button_green dialog_button full_width" {{{activateAccount}}}>{{label_activate_account}}</button>
+            <div id="activateAcc_buttons">
+                <b><p>¿No ha recibido el código?</p></b>
+                <button class="button_blue dialog_button full_width" {{{sendAgain}}}>{{label_send_again}}</button>
+                <button class="button_red dialog_button full_width" {{{cancelSignup}}}>{{label_cancel_process}}</button>
+            </div>
+        </div>
+    </div>
+</div>

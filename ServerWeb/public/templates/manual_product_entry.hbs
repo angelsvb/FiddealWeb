@@ -1,0 +1,19 @@
+<div id="manual_product_entry" class="modal">
+    <div id="manualProductEntry_container" class="shadow dialog_container">
+        <div id="manualProductEntry_header" class ="dialog_header">
+            <img class ="dialogIcon" src="../images/ic_hand.svg"/>
+            <h3>{{dialog_title}}</h3>
+        </div>
+        <div id="addStockProduct_content" class ="dialog_content">
+            <form>
+                <div class="form-group col-md-12">
+                    <label for="inputManualEntry">{{product_code}}</label>
+                    <input type="text" class="form-control" id="inputManualEntry" aria-describedby="emailHelp" placeholder="123456789" required>
+                    <div id="inputManualEntry_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                </div>
+            </form>
+            <button class ="button_yellow dialog_button full_width" onClick="tryManualentry()">{{add}}</button>
+            <button class="button_grey dialog_button full_width" onClick="$('#manual_product_entry').addClass('hidden').removeClass('visible')">{{close}}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div id="get_product_price" class="modal">
+    <div id="addPriceProduct_container" class="shadow dialog_container">
+        <div id="addPriceProduct_header" class ="dialog_header">
+            <img class ="dialogIcon" src="../images/ic_price.svg"/>
+            <h3>{{dialog_title}}</h3>
+        </div>
+        <div id="addPriceProduct_content" class ="dialog_content">
+            <form>
+                <div class="form-group col-md-12">
+                    <label for="inputCheckPrice">{{product_code}}</label>
+                    <input type="text" class="form-control" id="inputCheckPrice" aria-describedby="emailHelp" placeholder="123456789">
+                    <div id="inputCheckPrice_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                </div>
+                <div class="form-group">
+                    <label for="price_productName">{{product_name}}</label>
+                    <input type="text" class="form-control" id="price_productName" aria-describedby="emailHelp" placeholder="{{product_name_placeholder}}" disabled>
+                    <label for="price_productPrice">{{product_price}}</label>
+                    <input type="text" class="form-control" id="price_productPrice" aria-describedby="emailHelp" placeholder="0.00 €" disabled>
+                    <label for="price_productRealPrice">{{product_real_price}}</label>
+                    <input type="text" class="form-control" id="price_productRealPrice" aria-describedby="emailHelp" placeholder="0.00 €" disabled>
+                </div>
+            </form>
+            <button class ="button_blue dialog_button full_width" onClick="checkProductPrice()">{{label_check}}</button>
+            <button class="button_grey dialog_button full_width" onClick="$('#get_product_price').addClass('hidden').removeClass('visible')">{{close}}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+label{
+    font-weight: 700;
+    color: #454545;
+}
+
+#content{
+    height: auto;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+#content_container{
+    overflow: hidden;
+    height: auto;
+    min-height: 90%;
+    padding:25px;
+}
+
+#content_container:after{
+    content:"";
+    display:table;
+    clear:both;
+}
+
+#header_profile{
+    padding-left: 15px;
+    padding-right: 15px;
+    width:100%;
+}
+
+.horizontal_rule{
+    margin-bottom: 25px;
+}
+
+#content > .row{
+    padding-left: 25px;
+}
+
+label, input{
+    font-size: 1vw !important;
+}
+
+input[type=time]{
+    line-height: 1 !important;
+    padding: 10px 5px !important;
+}
+
+.center{
+    text-align: center;
+    width: 100%;
+}
+
+.right{
+    text-align: right;
+    width: 100%;
+}
+
+.form_action{
+    width: 2.5vw;
+    height: 2.5vw;
+    margin: 0;
+}
+
+.custom-checkbox > label {
+    font-size: 1vw !important;
+}
+
+.custom-checkbox{
+    width: 100%;
+    margin-left: 25px;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+    background-color:#388e3c;
+}
+
+.custom-checkbox .custom-control-input:checked:disabled~.custom-control-label::before{
+    background-color:#388e3c;
+}
+
+#content .form_title{
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+#content .form-group > div{
+    padding-left:15px !important;
+    padding-right: 10px !important;
+}

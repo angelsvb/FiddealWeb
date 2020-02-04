@@ -1,0 +1,429 @@
+.loadingGIF{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 85%;
+}
+
+.loadingContainer{
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25%;
+    height: 40%;
+    background: #212121EE;
+    z-index: 100 !important;
+}
+
+.creditCardContainer{
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    right: 25%;
+    transform: translate(25%, -50%);
+    width: 25%;
+    height: 40%;
+    background: #0484E6;
+    z-index: 100 !important;
+    border: 3px solid #0484E6;
+    text-align: center;
+    color: #FCFCFC;
+}
+
+.creditCardContainer:hover{
+    border: 3px solid #FCFCFC;
+}
+
+.cashContainer{
+    text-align: center;
+    color: #FCFCFC;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-25%, -50%);
+    width: 25%;
+    height: 40%;
+    background: #388e3c;
+    z-index: 100 !important;
+    border: 3px solid #388e3c;
+}
+
+.cashContainer:hover{
+    border: 3px solid #FCFCFC;
+}
+
+.notHasCardContainer{
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    right: 25%;
+    transform: translate(25%, -50%);
+    width: 25%;
+    height: 40%;
+    background: #f94f4f;
+    z-index: 100 !important;
+    border: 3px solid #f94f4f;
+    text-align: center;
+    color: #FCFCFC;
+}
+
+.hasCardContainer:hover,.notHasCardContainer:hover{
+    border: 3px solid #FCFCFC;
+}
+
+.hasCardContainer{
+    text-align: center;
+    color: #FCFCFC;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-25%, -50%);
+    width: 25%;
+    height: 40%;
+    background: #388e3c;
+    z-index: 100 !important;
+    border: 3px solid #388e3c;
+}
+
+#loading{
+    z-index: 99 !important;
+}
+
+.dialog_header{
+    width: auto;
+    height: auto;
+    border-radius: 15px 15px 0 0;
+    padding: 20px;
+    /*padding: 20px 150px;*/
+}
+
+.dialog_content{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    min-height: 50px;
+    padding: 5% 10% 3% 10%;
+    color: #454545;
+}
+
+#changePassword_content{
+    padding: 30px 40px 0px 40px;
+}
+
+.green_header{
+    background: #316f35;
+}
+
+.green_header > h3{
+    color: white;
+}
+
+.green_header > img{
+    display: block;
+    margin-left: 50%;
+    margin-right: 50%;
+}
+
+.dialog_container{
+    border-radius: 15px;
+    position: absolute;
+    max-width: 30%;
+    top: 40%;
+    left: 50%;
+    background: #FCFCFC;
+    transform: translate(-50%, -40%);
+    width: auto;
+    height: auto;
+    min-width: 15%;
+}
+
+#changePassword_container{
+    width: 400px;
+}
+
+#sendMailRecoverPassword_container{
+    width: 400px;
+    height: auto;
+}
+
+#recoverPassword_container{
+    width: 45%;
+}
+
+#activateAcc_container{
+    width: 400px;
+}
+
+#addPriceProduct_container, #addStockProduct_container{
+    width: 400px;
+}
+
+#manualProductEntry_container{
+    width: 400px;
+}
+
+#purchaseInfoContainer{
+    width: 550px;
+}
+
+#information_header{
+    background: #04B9E6;
+}
+
+#terms_conditions_header{
+    background: #04B9E6;
+    color: #FCFCFC;
+    text-align: center;
+}
+
+#terms_conditions_modified p {
+    line-height: 1.9;
+    font-size: 100%;
+}
+
+#warning_header{
+    background: #f94f4f;
+}
+
+#changePassword_header{
+    background: #ffc107;
+    text-align: center;
+    color: white;
+}
+
+#close_session_header{
+    background: #ffc107;
+    text-align: center;
+    color: white;
+}
+
+#activateAcc_header{
+    text-align: center;
+    background: #388e3c;
+    color: white;
+}
+
+#sendMailRecoverPassword_header{
+    background: #388e3c;
+    text-align: center;
+    color: white;
+}
+
+#recoverPassword_header{
+    background: #388e3c;
+    text-align: center;
+    color: white;
+}
+
+#addPriceProduct_header, #addStockProduct_header{
+    background: #04B9E6;
+    color: white;
+    text-align: center;
+}
+
+#checkStockProduct_header{
+    background: #0484E6;
+    color: white;
+    text-align: center;
+}
+
+#manualProductEntry_header{
+    background: #ffc107;
+    color: white;
+    text-align: center;
+}
+
+#information_buttons{
+    width: 50%;
+    margin: 0 auto;
+}
+
+#warning_buttons{
+    width: 50%;
+    margin: 0 auto;
+}
+
+#close_session_buttons{
+    content:"";
+    display:table;
+    clear:both;
+    padding-left:5%;
+    padding-right:5%;
+}
+
+#changePassword_buttons{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#recoverPassword_buttons{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#activateAcc_buttons{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.dialogIcon{
+    display:block;
+    margin:auto;
+    width: 48px;
+    height: 48px;
+}
+
+.hr{
+    height: 1px;
+    width: 100%
+}
+
+#hr_information{
+    background: #04B9E6;
+}
+
+#hr_warning{
+    background: #f94f4f;
+}
+
+#hr_changePassword{
+    background: #ffc107;
+}
+
+
+.center_horizontally{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+.dialog_message{
+    text-align: justify;
+    font-size: 100%;
+    line-height: 1.5;
+    color: #212121;
+}
+
+.dialog_title{
+    color: #212121;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 130%;
+}
+
+.dialog_button{
+    margin-top: 0px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 8px;
+    width: 75% !important;
+}
+
+.dialog_button:last-child:not(:first-child){
+    margin-bottom: 0px !important;
+}
+
+.full_width{
+    width: 100% !important;
+}
+
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
+.modal-content {
+    margin: 5px auto; /* 15% from the top and centered */
+    border: 0px solid #212121;
+    background-color: #f1f1f1;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-height: 80%;
+    overflow: no-display;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#button_cancel_chngPwd , #button_accept_chngPwd{
+    display:inline-block;
+}
+
+#button_cancel_recoverPwd , #button_accept_recoverPwd{
+    display:inline-block;
+}
+
+.hidden{
+    display:none !important;
+}
+
+.visible{
+    display:block;
+}
+
+form{
+    margin-bottom: 35px;
+}
+
+form input{
+    height: auto !important;
+}
+
+h3{
+    font-weight: 700 !important;
+    font-size: 150% !important;
+    margin-top: 25px;
+}
+
+.modal button{
+    border-radius: 8px !important;
+}
+
+.modal .labelForm{
+    font-size: 100%;
+}
+
+#technicalSupp_container{
+    width: 40%;
+    max-width: 40% !important;
+    max-height: 95%;
+}
+
+#technicalSupp_header{
+    background: #388e3c;
+    text-align: center;
+    color: white;
+    padding:10px !important;
+}
+
+#technicalSupp_header h3{
+    margin-top: 10px;
+}
+
+#technicalSupp_content{
+    padding: 15px 40px;
+}
+
+#accept_purchase_header{
+    background: #388e3c;
+    text-align: center;
+    color: white;
+}

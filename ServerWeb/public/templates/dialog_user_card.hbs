@@ -1,0 +1,24 @@
+<div id="dialog_user_card" class="modal">
+    <div id="manualProductEntry_container" class="shadow dialog_container">
+        <div id="manualProductEntry_header" class ="dialog_header" style="background-color: #388e3c">
+            <img class ="dialogIcon" src="../images/ic_hand.svg"/>
+            <h3>{{dialog_title}}</h3>
+        </div>
+        <div id="addStockProduct_content" class ="dialog_content">
+            <form>
+                <div class="form-group col-md-12">
+                    <label for="inputUserCard">{{costumer_code}}</label>
+                    <input type="text" class="form-control" id="inputUserCard">
+                    <div id="inputUserCard_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                </div>
+                <div class="form-group">
+                    <label for="userName">{{costumer_name}}</label>
+                    <input type="text" class="form-control" id="userName" disabled style="margin-bottom: 5px">
+                </div>
+            </form>
+            <button id="userCard_continue" class ="button_green dialog_button full_width" onClick="continueInvoiceWithCard()">{{search_costumer}}</button>
+            <button class="button_red dialog_button full_width" onClick="invoiceWithoutCard()">{{without_card}}</button>
+            <button class="button_grey dialog_button full_width" onclick="cancelUserCard()">{{cancel}}</button>
+        </div>
+    </div>
+</div>

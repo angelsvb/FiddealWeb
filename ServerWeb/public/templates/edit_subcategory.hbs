@@ -1,0 +1,35 @@
+<div id="edit_subcategory" class="modal">
+    <div id="edit_subcategory_container" class="shadow dialog_container">
+        <div id="edit_subcategory_header" class ="dialog_header green_header">
+            <img width="72px" height="72px" src="../images/ic_action_edit_white.svg" class="dialog_icon"/>
+            <h3 class="dialog_title">{{dialog_title}}</h3>
+        </div>
+        <div id="edit_subcategory_content" class ="dialog_content">
+            <form>
+                <div class="form-group col-md-12">
+                    <label for="subcategory_name" class="labelForm">{{subcategory_name}}}</label>
+                    <input type="text" class="form-control" id="subcategory_name" placeholder="TV y sonido" required value="{{CurrentName}}">
+                    <div id="subcategory_name_error" class="invalid-tooltip">{{compulsory_field}}</div>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label for="subcategory_parent" class="labelForm">{{main_category}}</label>
+                    <select data-toggle="tooltip" data-placement="top" title="{{select_title}}" id="subcategory_parent" class="form-control selector">
+                        {{#each Categories}}
+                            {{#if Current}}
+                                <option value="{{_id}}" selected="selected">{{Name}}</option>
+                            {{else}}
+                                <option value="{{_id}}">{{Name}}</option>
+                            {{/if}}
+                        {{/each}}
+                    </select>
+                    <div id="subcategory_parent_error" class="invalid-tooltip">{{compulsory_field}}</div>
+                </div>
+            </form>
+            <div id="buttons">
+                <button class ="button_green dialog_button full_width" {{{action}}}>{{save_subcategory}}</button>
+                <button id="button_cancel" class="button_grey dialog_button full_width" onClick="$('#edit_subcategory').addClass('hidden').removeClass('visible')">{{cancel}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div id="reject_purchase_comment" class="modal">
+    <div id="technicalSupp_container" class="shadow dialog_container">
+        <div id="technicalSupp_header" class ="dialog_header">
+            <img class="dialogIcon" src="../images/ic_close.svg"/>
+            <h3>{{dialog_title}}</h3>
+        </div>
+        <div id="technicalSupp_content" class ="dialog_content">
+            <form>
+                <div class="form-group col-md-12">
+                    <label for="inputMessage">{{comment}}</label>
+                    <textarea style="resize:horizontal" maxlength="250" id="inputComment" rows="4" placeholder="{{comment_placeholder}}"></textarea>
+                    <small id="textAreaHelp" class="form-text text-muted">{{max_250_chars}}</small>
+                    <div id="inputComment_error" class="invalid-tooltip" style="display:none">{{compulsory_field}}</div>
+                </div>
+            </form>
+            <button class ="button_green dialog_button full_width" onclick="saveRejectedPurchase()">{{confirm}}</button>
+            <button class="button_grey dialog_button full_width" onClick="$('#reject_purchase_comment').addClass('hidden').removeClass('visible')">{{cancel}}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+<div id="content_container">
+    <div id="content">
+        <table id="purchases_grid" class="grid">
+            <thead>
+            <tr class="grid_row grid_header">
+                <th id="purchase_id" class="column_25">{{column_purchase_number}}</th>
+                <th id="purchase_date" class="column_10 centered">{{column_purchase}}</th>
+                <th id="subtotal" class="column_10 centered">{{column_subtotal}}</th>
+                <th id="discount" class="column_10 centered">{{column_discount}}</th>
+                <th id="total" class="column_10 centered">{{column_total}}</th>
+                <th id="payment_method" class="column_10 centered">{{column_payment_method}}</th>
+                <th id="id_customer" class="column_10 centered">{{column_client_id}}</th>
+                <th id="manual_purchase" class="column_12 centered">{{column_manual_purchase}}</th>
+            </tr>
+            <tr class="grid_row">
+                <th class="horizontal_rule column_97"></th>
+            </tr>
+            <tr class="spacer_10"></tr>
+            </thead>
+            <tbody id="table_body">
+            </tbody>
+        </table>
+    </div>
+    <div id="purchase_detail" class="column_40 hidden">
+        <div id="container_detail">
+            <div class="detail_header clearfix">
+                <div class="detail_buttons_container clearfix">
+                    <p class="detail_title light">{{detail_title}}</p>
+                    <button class="button_detail last_action" onclick="hidePurchaseDetail()">
+                        <div style="display:inline-flex">
+                            <p class="action_label">{{close}}</p>
+                            <img class="action_icon" src="../images/ic_close_dark.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <hr class="horizontal_rule horizontal_rule_detail">
+            <div class="grid_item_detail">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputPurchaseID">{{purchase_id}}</label>
+                        <input type="text" id="inputPurchaseID">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPurchaseDate">{{purchase_date}}</label>
+                        <input type="text" id="inputPurchaseDate">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPurchaseUser">{{customer_id}}</label>
+                        <input type="text" id="inputPurchaseUser">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="inputSubtotal">{{subtotal}}</label>
+                        <input type="text" id="inputSubtotal">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputDiscount">{{discount}}</label>
+                        <input type="text" id="inputDiscount">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputTotal">{{total}}</label>
+                        <input type="text" id="inputTotal">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPaymentMethod">{{payment_method}}</label>
+                        <input type="text" id="inputPaymentMethod">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputManual">{{manual_purchase}}</label>
+                        <input type="text" id="inputManual">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputAccepted">{{manual_accepted}}</label>
+                        <input type="text" id="inputAccepted">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputRegistrationDate">{{entry_date}}</label>
+                        <input type="text" id="inputRegistrationDate">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputRevisionDate">{{revision_date}}</label>
+                        <input type="text" id="inputRevisionDate">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <table id="products_grid" class="grid">
+                            <thead>
+                            <tr class="grid_row grid_header">
+                                <th class="column_40">{{column_detail_product}}</th>
+                                <th class="column_20 centered">{{column_detail_price}}</th>
+                                <th class="column_20 centered">{{column_detail_discount}}</th>
+                                <th class="column_20 centered">{{column_detail_amount}}</th>
+                            </tr>
+                            <tr class="grid_row">
+                                <th class="horizontal_rule column_97"></th>
+                            </tr>
+                            <tr class="spacer_5"></tr>
+                            </thead>
+                            <tbody id="products_body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

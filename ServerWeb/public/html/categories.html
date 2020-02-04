@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Fiddeal - Categorias y subcategorias </title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <script type='text/javascript' src="../javascripts/utilities/jquery-functions.js"></script>
+    <script type='text/javascript' src="../bundled/categories.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
+    <link rel="stylesheet" href="../stylesheets/dialogs.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/categories.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/style.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/header_and_footer.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/fiddeal.css" type="text/css">
+
+    <!-- COOKIES -->
+    <link rel="stylesheet" type="text/css" href="../stylesheets/cookies_custom.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- END COOKIES -->
+
+    <script> initializeBefore() </script>
+</head>
+<body onLoad="initializeAfter()">
+<div id="content_container">
+    <div id="content">
+        <table id="categories_grid" class="grid">
+            <thead>
+                <tr class="grid_row grid_header">
+                    <th id="purchase_id" class="column_30">Categoria</th>
+                    <th id="purchase_date" class="column_25 centered">Creación</th>
+                    <th id="total" class="column_25 centered">Modificación</th>
+                    <th id="id_customer" class="column_17 centered">Subcategorias</th>
+                </tr>
+                <tr class="grid_row">
+                    <th class="horizontal_rule column_97"></th>
+                </tr>
+                <tr class="spacer_10"></tr>
+            </thead>
+            <tbody id="table_body">
+            </tbody>
+        </table>
+    </div>
+    <div id="category_detail" class="column_40 hidden">
+        <div id="container_detail">
+            <div class="detail_header clearfix">
+                <div class="detail_buttons_container clearfix">
+                    <p class="detail_title light">DATOS CATEGORIA </p>
+                    <button class="button_detail last_action" onclick="hideDetail()">
+                        <div style="display:inline-flex">
+                            <p class="action_label">Cerrar</p>
+                            <img class="action_icon" src="../images/ic_close_dark.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button id="main_button"  class="button_detail" onClick="switchFloatingButtons()">
+                        <div>
+                            <p class="action_label">Acciones</p>
+                            <img class="action_icon" src="../images/ic_actions.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_first" onclick="newCategory()">
+                        <div>
+                            <p class="action_label">Añadir</p>
+                            <img class="action_icon" src="../images/ic_action_new.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_second edit" onclick="startEditingCategory()">
+                        <div>
+                            <p class="action_label">Editar</p>
+                            <img class="action_icon" src="../images/ic_action_edit.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_second confirm_edit hidden" onclick="saveEditedCategory()">
+                        <div>
+                            <p class="action_label">Guardar</p>
+                            <img class="action_icon" src="../images/ic_action_save.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_third" onclick="deleteCategory()">
+                        <div>
+                            <p class="action_label">Eliminar</p>
+                            <img class="action_icon" src="../images/ic_action_delete.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                    <button class="button_detail button_secondary button_secondary_third discard_edit hidden" onclick="discardEditedCategory()">
+                        <div>
+                            <p class="action_label">Descartar</p>
+                            <img class="action_icon" src="../images/ic_action_reject_red.svg" width="28px" height="28px"/>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <hr class="horizontal_rule horizontal_rule_detail">
+
+            <div class="grid_item_detail">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputCategoryID">Número identificador</label>
+                        <input type="text" id="inputCategoryID" disabled>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputCategoryName">Nombre</label>
+                        <input type="text" id="inputCategoryName">
+                        <div id="inputCategoryName_error" class="invalid-tooltip" style="display:none">Campo obligatório.</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCreationDate">Fecha de creación</label>
+                        <input type="text" id="inputCreationDate" disabled>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputLastUpdate">Fecha de modificación</label>
+                        <input type="text" id="inputLastUpdate" disabled>
+                    </div>
+                </div>
+
+                <div class="form-row" style="padding-top: 1%">
+                    <div class="grid_header">
+                        <p class="detail_subtitle">Subcategorias</p>
+                        <img id="action_new_subcategory" src="../images/ic_action_new.svg" class="subcategory_icon" title="Nueva categoria" onclick="newSubcategory()">
+                    </div>
+                    <hr class="horizontal_rule"/>
+                    <div class="form-group col-md-12">
+                        <table id="subcategories_grid" class="grid secondary_grid">
+                            <thead>
+                            <tr class="spacer_5"></tr>
+                            </thead>
+                            <tbody id="products_body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="empty_grid" class="empty_grid_container hidden shadow">
+        <p class="info_title"> ¡ATENCIÓN! </p>
+        <p class="info"> Aún no ha configurado ningúna categoria de productos. Se trata del primer paso para poder empezar a trabajar con Fiddeal.</p>
+        <p> ¡Haga click en el siguiente icono para empezar!</p>
+        <img id="create_first" src="../images/ic_action_new_dark.svg" class="image_action" title="Nueva categoria" onclick="newCategory()" alt="Crear categoria">
+    </div>
+</div>
+</body>
+</html>
