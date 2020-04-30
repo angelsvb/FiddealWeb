@@ -15,7 +15,7 @@
     "debug": "~2.6.9",
     "express": "^4.17.1",
     "handlebars": "^4.4.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-mask-plugin": "^1.14.16",
     "jquery-ui": "^1.12.1",
     "jquery.nicescroll": "^3.7.6",
